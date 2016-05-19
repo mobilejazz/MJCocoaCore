@@ -7,15 +7,25 @@
 //
 
 #import "MJAppLinkRecognizer.h"
-#import "MJDataProviderDirector.h"
-#import "MJInteractor.h"
-#import "MJObjectStack.h"
-#import "MJSecureKey.h"
-#import "MJTaskDispatcher.h"
+
+// Categories
 #import "NSData+AES.h"
 #import "NSData+AESKey.h"
 #import "NSData+AESValue.h"
 #import "NSMutableData+AES.h"
 #import "NSString+Additions.h"
+
+// Core
+#import "MJDataProviderDirector.h"
+#import "MJDEntity.h"
+#import "MJDEntityMapper.h"
+#import "MJInteractor.h"
+#import "MJModelObject.h"
 #import "MJDRealmObject.h"
 #import "MJDRealmMapper.h"
+
+// Other
+#import "MJAppLinkRecognizer.h"
+#import "MJObjectStack.h"
+#import "MJSecureKey.h"
+#import "MJTaskDispatcher.h"
