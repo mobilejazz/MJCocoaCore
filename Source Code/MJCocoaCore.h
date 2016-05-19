@@ -6,7 +6,8 @@
 //  Copyright © 2016 MobileJazz. All rights reserved.
 //
 
-#import "MJAppLinkRecognizer.h"
+#ifndef MJCocoaCore_h
+#define MJCocoaCore_h
 
 // Categories
 #import "NSData+AES.h"
@@ -29,3 +30,5 @@
 #import "MJObjectStack.h"
 #import "MJSecureKey.h"
 #import "MJTaskDispatcher.h"
+
+#endif

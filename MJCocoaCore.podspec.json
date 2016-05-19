@@ -1,6 +1,6 @@
 {
   "name": "MJCocoaCore",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "summary": "Mobile Jazz Cocoa Core",
   "description": "Common set of reusable classes, categories and definitions for Cocoa.",
   "homepage": "https://github.com/mobilejazz/MJCocoaCore",
@@ -18,7 +18,7 @@
   "social_media_url": "http://twitter.com/mobilejazz",
   "source": {
 	  "git": "https://github.com/mobilejazz/MJCocoaCore.git",
-	  "tag": "0.1.4"
+	  "tag": "0.1.5"
   },
   "source_files": [
 	  "Source Code/**/*.{h,m}"
