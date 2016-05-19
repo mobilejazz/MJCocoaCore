@@ -43,7 +43,7 @@
 /**
  * Converts an array of entities into an array of objects.
  **/
-static inline NSArray<__kindof MJModelObject*>* MJModelObjectArrayFromEntitiesArray(NSArray <__kindof MJDEntity*> *array, id <FDDEntityMapper> mapper)
+static inline NSArray<__kindof MJModelObject*>* MJModelObjectArrayFromEntitiesArray(NSArray <__kindof MJDEntity*> *array, id <MJDEntityMapper> mapper)
 {
     if (array.count == 0 || mapper == nil)
         return nil;
