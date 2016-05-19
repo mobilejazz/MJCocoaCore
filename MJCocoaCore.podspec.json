@@ -5,20 +5,20 @@
   "description": "Common set of reusable classes, categories and definitions for Cocoa.",
   "homepage": "https://github.com/mobilejazz/MJCocoaCore",
   "license": {
-    "type": "Apache License, Version 2.0",
-    "file": "LICENSE"
+	  "type": "Apache License, Version 2.0",
+	  "file": "LICENSE"
   },
   "authors": {
-    "Mobile Jazz": "info@mobilejazz.com"
+	  "Mobile Jazz": "info@mobilejazz.com"
   },
   "platforms": {
-    "ios": "7.0",
-	"osx": "10.9",
+	  "ios": "7.0",
+	  "osx": "10.9"
   },
   "social_media_url": "http://twitter.com/mobilejazz",
   "source": {
-    "git": "https://github.com/mobilejazz/MJCocoaCore.git",
-    "tag": "0.1.0"
+	  "git": "https://github.com/mobilejazz/MJCocoaCore.git",
+	  "tag": "0.1.0"
   },
   "source_files": [
 	  "SourceCode/**/*.{h,m}"
