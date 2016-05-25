@@ -27,9 +27,7 @@
 		D22F7B1B1CEDD1590017B9BF /* MJModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B031CEDD1590017B9BF /* MJModelObject.m */; };
 		D22F7B1C1CEDD1590017B9BF /* MJDRealmObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B071CEDD1590017B9BF /* MJDRealmObject.m */; };
 		D22F7B1D1CEDD1590017B9BF /* MJAppLinkRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B091CEDD1590017B9BF /* MJAppLinkRecognizer.m */; };
-		D22F7B1E1CEDD1590017B9BF /* MJObjectStack.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B0C1CEDD1590017B9BF /* MJObjectStack.m */; };
 		D22F7B1F1CEDD1590017B9BF /* MJSecureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B0E1CEDD1590017B9BF /* MJSecureKey.m */; };
-		D22F7B201CEDD1590017B9BF /* MJTaskDispatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B101CEDD1590017B9BF /* MJTaskDispatcher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,12 +92,8 @@
 		D22F7B081CEDD1590017B9BF /* MJAppLinkRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJAppLinkRecognizer.h; sourceTree = "<group>"; };
 		D22F7B091CEDD1590017B9BF /* MJAppLinkRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJAppLinkRecognizer.m; sourceTree = "<group>"; };
 		D22F7B0A1CEDD1590017B9BF /* MJCocoaCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJCocoaCore.h; sourceTree = "<group>"; };
-		D22F7B0B1CEDD1590017B9BF /* MJObjectStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJObjectStack.h; sourceTree = "<group>"; };
-		D22F7B0C1CEDD1590017B9BF /* MJObjectStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJObjectStack.m; sourceTree = "<group>"; };
 		D22F7B0D1CEDD1590017B9BF /* MJSecureKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSecureKey.h; sourceTree = "<group>"; };
 		D22F7B0E1CEDD1590017B9BF /* MJSecureKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSecureKey.m; sourceTree = "<group>"; };
-		D22F7B0F1CEDD1590017B9BF /* MJTaskDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTaskDispatcher.h; sourceTree = "<group>"; };
-		D22F7B101CEDD1590017B9BF /* MJTaskDispatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTaskDispatcher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,12 +191,8 @@
 				D22F7AFA1CEDD1590017B9BF /* Core */,
 				D22F7B081CEDD1590017B9BF /* MJAppLinkRecognizer.h */,
 				D22F7B091CEDD1590017B9BF /* MJAppLinkRecognizer.m */,
-				D22F7B0B1CEDD1590017B9BF /* MJObjectStack.h */,
-				D22F7B0C1CEDD1590017B9BF /* MJObjectStack.m */,
 				D22F7B0D1CEDD1590017B9BF /* MJSecureKey.h */,
 				D22F7B0E1CEDD1590017B9BF /* MJSecureKey.m */,
-				D22F7B0F1CEDD1590017B9BF /* MJTaskDispatcher.h */,
-				D22F7B101CEDD1590017B9BF /* MJTaskDispatcher.m */,
 			);
 			name = "Source Code";
 			path = "../../Source Code";
@@ -393,7 +383,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D22F7B1E1CEDD1590017B9BF /* MJObjectStack.m in Sources */,
 				D22F7A521CEDC6330017B9BF /* ViewController.m in Sources */,
 				D22F7B181CEDD1590017B9BF /* MJDataProviderDirector.m in Sources */,
 				D22F7B191CEDD1590017B9BF /* MJDEntity.m in Sources */,
@@ -410,7 +399,6 @@
 				D22F7B131CEDD1590017B9BF /* NSData+AESValue.m in Sources */,
 				D22F7B1D1CEDD1590017B9BF /* MJAppLinkRecognizer.m in Sources */,
 				D22F7B121CEDD1590017B9BF /* NSData+AESKey.m in Sources */,
-				D22F7B201CEDD1590017B9BF /* MJTaskDispatcher.m in Sources */,
 				D22F7B1F1CEDD1590017B9BF /* MJSecureKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

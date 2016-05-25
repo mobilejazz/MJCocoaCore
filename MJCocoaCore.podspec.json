@@ -1,28 +1,59 @@
 {
   "name": "MJCocoaCore",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "summary": "Mobile Jazz Cocoa Core",
   "description": "Common set of reusable classes, categories and definitions for Cocoa.",
   "homepage": "https://github.com/mobilejazz/MJCocoaCore",
   "license": {
-	  "type": "Apache License, Version 2.0",
-	  "file": "LICENSE"
+    "type": "Apache License, Version 2.0",
+    "file": "LICENSE"
   },
   "authors": {
-	  "Mobile Jazz": "info@mobilejazz.com"
+    "Mobile Jazz": "info@mobilejazz.com"
   },
   "platforms": {
-	  "ios": "7.0",
-	  "osx": "10.9"
+    "ios": "7.0",
+    "osx": "10.9"
   },
   "social_media_url": "http://twitter.com/mobilejazz",
   "source": {
-	  "git": "https://github.com/mobilejazz/MJCocoaCore.git",
-	  "tag": "0.1.5"
+    "git": "https://github.com/mobilejazz/MJCocoaCore.git",
+    "tag": "0.1.5"
   },
   "source_files": [
-	  "Source Code/**/*.{h,m}"
+    "Source Code/**/*.{h,m}"
   ],
-  "frameworks": "Foundation",
-  "requires_arc": true
+  "frameworks": [
+    "Foundation"
+  ],
+  "requires_arc": true,
+  "subspecs": [
+    {
+      "name": "NSDataAES",
+      "source_files": "Source Code/Categories/NSData+AES/*.{h,m}"
+    },
+    {
+      "name": "StringAddition",
+      "source_files": "Source Code/Categories/NSString+*.{h,m}"
+    },
+    {
+      "name": "MJCore",
+      "source_files": "Source Code/Core/*.{h,m}"
+    },
+    {
+      "name": "MJCoreRealm",
+      "source_files": "Source Code/Core/Realm/*.{h,m}",
+      "dependencies": {
+        "Realm": ["~>0.103"]
+      }
+    },
+    {
+      "name": "MJAppLinkRecognizer",
+      "source_files": "Source Code/MJAppLinkRecognizer.{h,m}"
+    },
+    {
+      "name": "MJSecureKey",
+      "source_files": "Source Code/MJSecureKey.{h,m}"
+    }
+  ]
 }

@@ -7,8 +7,6 @@
 //
 
 #import "MJDRealmObject.h"
-
-#if defined RLM_ARRAY_TYPE
 #import "NSString+Additions.h"
 
 NSString* MJDRealmObjectIdentifier(NSString *className)
@@ -62,4 +60,4 @@ NSString* MJDRealmObjectIdentifier(NSString *className)
 }
 
 @end
-#endif
+

@@ -7,8 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
-#if defined RLM_ARRAY_TYPE
 #import <Realm/Realm.h>
 
 @class MJDEntity;
@@ -63,4 +61,3 @@ static inline RLMArray* RealmArrayFromMJDEntitiesArray(NSArray <__kindof MJDEnti
     
     return array;
 }
-#endif

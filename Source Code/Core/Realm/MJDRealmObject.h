@@ -5,8 +5,6 @@
 //  Created by Joan Martin on 30/04/16.
 //  Copyright © 2016 Joan Martin. All rights reserved.
 //
-
-#if defined RLM_ARRAY_TYPE
 #import <Realm/Realm.h>
 
 @interface MJDRealmObject : RLMObject
@@ -27,4 +25,3 @@
 @property (nonatomic, strong) NSDate *realmLastUpdate;
 
 @end
-#endif
