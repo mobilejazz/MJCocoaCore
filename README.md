@@ -4,19 +4,33 @@
 
 To install the MJCocoaCore library, just paste the following line in your podfile:
 ```
-pod 'MJCocoaCore', :git => 'https://github.com/mobilejazz/MJCocoaCore.git', :tag => '0.1.5'
+pod 'MJCocoaCore', :git => 'https://github.com/mobilejazz/MJCocoaCore.git', :tag => '0.1.6'
+```
+
+We also have some subpods that can be installed like this:
+```ruby
+pod 'MJCocoaCore/NSDataAES'
+pod 'MJCocoaCore/StringAddition'
+pod 'MJCocoaCore/MJCore'
+pod 'MJCocoaCore/MJCoreRealm'
+pod 'MJCocoaCore/MJAppLinkRecognizer'
+pod 'MJCocoaCore/MJSecureKey'
 ```
 
 ## Dependencies
 
-MJCocoaCore does not have any dependencies.
+MJCocoaCore/Realm rely on Realm, but the dependency is automatically managed bu CocoaPods.
 
 ## Included classes
 ### Categories
+#### NSDataAES
 - NSData+AES
-- NSData+AESKey
+- NSData+AESKey 
 - NSData+AESValue
-- NSMutableData+AES.
+- NSMutableData+AES
+
+#### StringAddition
+
 - NSString+Additions
 
 ### Core
@@ -24,12 +38,17 @@ MJCocoaCore does not have any dependencies.
 - MJDEntity
 - MJDEntityMapper
 - MJInteractor
+
+### Realm
 - MJModelObject
 - MJDRealmObject
 - MJDRealmMapper
 
 ### Other
+#### MJAppLinkRecognizer
 - MJAppLinkRecognizer
-- MJObjectStack
+
+#### MJSecureKey
+
 - MJSecureKey
-- MJTaskDispatcher
+
