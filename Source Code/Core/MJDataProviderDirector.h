@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, MJDataProviderDirectorResolveRoute)
+typedef NS_ENUM (NSUInteger, MJDataProviderDirectorResolveRoute)
 {
     MJDataProviderDirectorResolveRouteCache,
     MJDataProviderDirectorResolveRouteNetwork,
@@ -29,15 +29,15 @@ typedef NS_ENUM(NSUInteger, MJDataProviderDirectorResolveRoute)
 @interface MJDataProviderDirectorResolver : NSObject
 
 /** *************************************************** **
- * @name Initializers
- ** *************************************************** **/
+* @name Initializers
+** *************************************************** **/
 
 + (instancetype)resolverWithBlock:(void (^)(MJDataProviderDirectorResolveRoute route))block;
 - (id)initWithBlock:(void (^)(MJDataProviderDirectorResolveRoute route))block;
 
 /** *************************************************** **
- * @name Resolving blocks
- ** *************************************************** **/
+* @name Resolving blocks
+** *************************************************** **/
 
 - (void)resolveWithNetwork;
 - (void)resolveWithCache;
@@ -52,14 +52,17 @@ typedef NS_ENUM(NSUInteger, MJDataProviderDirectorResolveRoute)
 @interface MJDataProviderDirector : NSObject
 
 /** *************************************************** **
- * @name Properties
- ** *************************************************** **/
+* @name Properties
+** *************************************************** **/
 
-@property (nonatomic, assign) BOOL forceRefresh;
+/**
+ * Default route. Default value is `MJDataProviderDirectorResolveRouteCache`.
+ **/
+@property (nonatomic, assign) MJDataProviderDirectorResolveRoute defaultRoute;
 
 /** *************************************************** **
- * @name Main methods
- ** *************************************************** **/
+* @name Main methods
+** *************************************************** **/
 
 - (void)networkBlock:(void (^)(MJDataProviderDirectorResolver *resolver))networkBlock
           cacheBlock:(void (^)(MJDataProviderDirectorResolver *resolver))cacheBlock;

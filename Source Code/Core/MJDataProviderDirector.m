@@ -18,7 +18,7 @@
 
 @implementation MJDataProviderDirectorResolver
 {
-    void (^_block)(MJDataProviderDirectorResolveRoute route);
+    void (^ _block)(MJDataProviderDirectorResolveRoute route);
 }
 
 + (instancetype)resolverWithBlock:(void (^)(MJDataProviderDirectorResolveRoute route))block
@@ -39,13 +39,17 @@
 - (void)resolveWithNetwork
 {
     if (_block)
+    {
         _block(MJDataProviderDirectorResolveRouteNetwork);
+    }
 }
 
 - (void)resolveWithCache
 {
     if (_block)
+    {
         _block(MJDataProviderDirectorResolveRouteCache);
+    }
 }
 
 @end
@@ -55,11 +59,10 @@
 - (void)networkBlock:(void (^)(MJDataProviderDirectorResolver *resolver))networkBlock cacheBlock:(void (^)(MJDataProviderDirectorResolver *resolver))cacheBlock
 {
     __block __weak MJDataProviderDirectorResolver *weakResolver = nil;
-    
+
     MJDataProviderDirectorResolver *resolver = [MJDataProviderDirectorResolver resolverWithBlock:^(MJDataProviderDirectorResolveRoute route) {
-        
         __strong MJDataProviderDirectorResolver *strongResolver = weakResolver;
-        
+
         if (route == MJDataProviderDirectorResolveRouteCache)
         {
             cacheBlock(strongResolver);
@@ -69,13 +72,13 @@
             networkBlock(strongResolver);
         }
     }];
-    
+
     weakResolver = resolver;
-    
-    if (_forceRefresh)
+
+    if (_defaultRoute == MJDataProviderDirectorResolveRouteNetwork)
     {
-        // If force refresh, use network block
-        
+        // Use network block
+
         if (networkBlock)
         {
             // If network block, execute network block
@@ -86,7 +89,7 @@
             // Nothing to be done. No block is executed.
         }
     }
-    else
+    else // if (_defaultRoute == MJDataProviderDirectorResolveRouteCache)
     {
         // Otherwise, use cache block.
         if (cacheBlock)
