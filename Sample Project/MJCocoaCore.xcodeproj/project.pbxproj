@@ -14,12 +14,6 @@
 		D22F7A571CEDC6330017B9BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22F7A551CEDC6330017B9BF /* Main.storyboard */; };
 		D22F7A621CEDC6330017B9BF /* MJCocoaCoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7A611CEDC6330017B9BF /* MJCocoaCoreTests.m */; };
 		D22F7A6D1CEDC6340017B9BF /* MJCocoaCoreUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7A6C1CEDC6340017B9BF /* MJCocoaCoreUITests.m */; };
-		D22F7B111CEDD1590017B9BF /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7AED1CEDD1590017B9BF /* NSData+AES.m */; };
-		D22F7B121CEDD1590017B9BF /* NSData+AESKey.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7AEF1CEDD1590017B9BF /* NSData+AESKey.m */; };
-		D22F7B131CEDD1590017B9BF /* NSData+AESValue.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7AF11CEDD1590017B9BF /* NSData+AESValue.m */; };
-		D22F7B141CEDD1590017B9BF /* NSData+SHA.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7AF31CEDD1590017B9BF /* NSData+SHA.m */; };
-		D22F7B151CEDD1590017B9BF /* NSDataAESCipher.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7AF51CEDD1590017B9BF /* NSDataAESCipher.m */; };
-		D22F7B161CEDD1590017B9BF /* NSMutableData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7AF71CEDD1590017B9BF /* NSMutableData+AES.m */; };
 		D22F7B171CEDD1590017B9BF /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7AF91CEDD1590017B9BF /* NSString+Additions.m */; };
 		D22F7B181CEDD1590017B9BF /* MJDataProviderDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7AFC1CEDD1590017B9BF /* MJDataProviderDirector.m */; };
 		D22F7B191CEDD1590017B9BF /* MJDEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7AFE1CEDD1590017B9BF /* MJDEntity.m */; };
@@ -63,18 +57,6 @@
 		D22F7A681CEDC6340017B9BF /* MJCocoaCoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MJCocoaCoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22F7A6C1CEDC6340017B9BF /* MJCocoaCoreUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJCocoaCoreUITests.m; sourceTree = "<group>"; };
 		D22F7A6E1CEDC6340017B9BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D22F7AEC1CEDD1590017B9BF /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
-		D22F7AED1CEDD1590017B9BF /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
-		D22F7AEE1CEDD1590017B9BF /* NSData+AESKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AESKey.h"; sourceTree = "<group>"; };
-		D22F7AEF1CEDD1590017B9BF /* NSData+AESKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AESKey.m"; sourceTree = "<group>"; };
-		D22F7AF01CEDD1590017B9BF /* NSData+AESValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AESValue.h"; sourceTree = "<group>"; };
-		D22F7AF11CEDD1590017B9BF /* NSData+AESValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AESValue.m"; sourceTree = "<group>"; };
-		D22F7AF21CEDD1590017B9BF /* NSData+SHA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SHA.h"; sourceTree = "<group>"; };
-		D22F7AF31CEDD1590017B9BF /* NSData+SHA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SHA.m"; sourceTree = "<group>"; };
-		D22F7AF41CEDD1590017B9BF /* NSDataAESCipher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataAESCipher.h; sourceTree = "<group>"; };
-		D22F7AF51CEDD1590017B9BF /* NSDataAESCipher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAESCipher.m; sourceTree = "<group>"; };
-		D22F7AF61CEDD1590017B9BF /* NSMutableData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableData+AES.h"; sourceTree = "<group>"; };
-		D22F7AF71CEDD1590017B9BF /* NSMutableData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableData+AES.m"; sourceTree = "<group>"; };
 		D22F7AF81CEDD1590017B9BF /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		D22F7AF91CEDD1590017B9BF /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
 		D22F7AFB1CEDD1590017B9BF /* MJDataProviderDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDataProviderDirector.h; sourceTree = "<group>"; };
@@ -201,30 +183,10 @@
 		D22F7AEA1CEDD1590017B9BF /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				D22F7AEB1CEDD1590017B9BF /* NSData+AES */,
 				D22F7AF81CEDD1590017B9BF /* NSString+Additions.h */,
 				D22F7AF91CEDD1590017B9BF /* NSString+Additions.m */,
 			);
 			path = Categories;
-			sourceTree = "<group>";
-		};
-		D22F7AEB1CEDD1590017B9BF /* NSData+AES */ = {
-			isa = PBXGroup;
-			children = (
-				D22F7AEC1CEDD1590017B9BF /* NSData+AES.h */,
-				D22F7AED1CEDD1590017B9BF /* NSData+AES.m */,
-				D22F7AEE1CEDD1590017B9BF /* NSData+AESKey.h */,
-				D22F7AEF1CEDD1590017B9BF /* NSData+AESKey.m */,
-				D22F7AF01CEDD1590017B9BF /* NSData+AESValue.h */,
-				D22F7AF11CEDD1590017B9BF /* NSData+AESValue.m */,
-				D22F7AF21CEDD1590017B9BF /* NSData+SHA.h */,
-				D22F7AF31CEDD1590017B9BF /* NSData+SHA.m */,
-				D22F7AF41CEDD1590017B9BF /* NSDataAESCipher.h */,
-				D22F7AF51CEDD1590017B9BF /* NSDataAESCipher.m */,
-				D22F7AF61CEDD1590017B9BF /* NSMutableData+AES.h */,
-				D22F7AF71CEDD1590017B9BF /* NSMutableData+AES.m */,
-			);
-			path = "NSData+AES";
 			sourceTree = "<group>";
 		};
 		D22F7AFA1CEDD1590017B9BF /* Core */ = {
@@ -386,19 +348,13 @@
 				D22F7A521CEDC6330017B9BF /* ViewController.m in Sources */,
 				D22F7B181CEDD1590017B9BF /* MJDataProviderDirector.m in Sources */,
 				D22F7B191CEDD1590017B9BF /* MJDEntity.m in Sources */,
-				D22F7B161CEDD1590017B9BF /* NSMutableData+AES.m in Sources */,
 				D22F7A4F1CEDC6330017B9BF /* main.m in Sources */,
 				D22F7B1A1CEDD1590017B9BF /* MJInteractor.m in Sources */,
 				D22F7B171CEDD1590017B9BF /* NSString+Additions.m in Sources */,
 				D22F7B1C1CEDD1590017B9BF /* MJDRealmObject.m in Sources */,
-				D22F7B141CEDD1590017B9BF /* NSData+SHA.m in Sources */,
-				D22F7B151CEDD1590017B9BF /* NSDataAESCipher.m in Sources */,
 				D22F7B1B1CEDD1590017B9BF /* MJModelObject.m in Sources */,
-				D22F7B111CEDD1590017B9BF /* NSData+AES.m in Sources */,
 				D22F7A4C1CEDC6330017B9BF /* AppDelegate.m in Sources */,
-				D22F7B131CEDD1590017B9BF /* NSData+AESValue.m in Sources */,
 				D22F7B1D1CEDD1590017B9BF /* MJAppLinkRecognizer.m in Sources */,
-				D22F7B121CEDD1590017B9BF /* NSData+AESKey.m in Sources */,
 				D22F7B1F1CEDD1590017B9BF /* MJSecureKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
