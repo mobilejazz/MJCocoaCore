@@ -1,4 +1,6 @@
-# MJCocoaCore
+![MJCocoaCore](https://raw.githubusercontent.com/mobilejazz/metadata/master/images/banners/mobile-jazz-mjcocoacore.png)
+
+# ![Mobile Jazz Badge](https://raw.githubusercontent.com/mobilejazz/metadata/master/images/icons/mj-40x40.png) MJCocoaCore
 
 ## How to 
 
@@ -23,11 +25,6 @@ MJCocoaCore/Realm rely on Realm, but the dependency is automatically managed bu 
 
 ## Included classes
 ### Categories
-#### NSDataAES
-- NSData+AES
-- NSData+AESKey 
-- NSData+AESValue
-- NSMutableData+AES
 
 #### StringAddition
 
