@@ -10,10 +10,6 @@
 #define MJCocoaCore_h
 
 // Categories
-#import "NSData+AES.h"
-#import "NSData+AESKey.h"
-#import "NSData+AESValue.h"
-#import "NSMutableData+AES.h"
 #import "NSString+Additions.h"
 
 // Core
