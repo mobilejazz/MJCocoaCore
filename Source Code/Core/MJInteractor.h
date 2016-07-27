@@ -39,6 +39,11 @@
 - (void)end:(void (^)())block;
 
 /**
+ * YES if executing, NO otherwise. This property is KVO compliant.
+ **/
+@property (nonatomic, assign, readonly) BOOL isExecuting;
+
+/**
  * Set needs refresh method. This will flag the `refresh` property to YES until the end of the interactor.
  **/
 - (void)setNeedsRefresh;

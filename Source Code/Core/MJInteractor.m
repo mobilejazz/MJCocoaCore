@@ -65,6 +65,9 @@ static NSMutableDictionary *_interactorDispatchQueues;
 
 - (void)begin:(void (^)())block
 {
+    [self willChangeValueForKey:@"isExecuting"];
+    _isExecuting = YES;
+    [self didChangeValueForKey:@"isExecuting"];
     dispatch_async(self.queue, ^{
         _semaphore = dispatch_semaphore_create(0);
         block();
@@ -77,6 +80,9 @@ static NSMutableDictionary *_interactorDispatchQueues;
     if ([NSThread isMainThread])
     {
         block();
+        [self willChangeValueForKey:@"isExecuting"];
+        _isExecuting = NO;
+        [self didChangeValueForKey:@"isExecuting"];
         if (_semaphore != NULL)
             dispatch_semaphore_signal(_semaphore);
     }
@@ -84,6 +90,9 @@ static NSMutableDictionary *_interactorDispatchQueues;
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             block();
+            [self willChangeValueForKey:@"isExecuting"];
+            _isExecuting = NO;
+            [self didChangeValueForKey:@"isExecuting"];
             if (_semaphore != NULL)
                 dispatch_semaphore_signal(_semaphore);
         });
