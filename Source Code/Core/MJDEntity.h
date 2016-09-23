@@ -20,6 +20,6 @@
 
 - (id)initWithIdentifier:(NSString*)identifier;
 
-@property (nonatomic, strong, readonly) NSString *identifier;
+@property (nonatomic, strong) NSString *identifier;
 
 @end
