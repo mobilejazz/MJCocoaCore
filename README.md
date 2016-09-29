@@ -2,6 +2,9 @@
 
 # ![Mobile Jazz Badge](https://raw.githubusercontent.com/mobilejazz/metadata/master/images/icons/mj-40x40.png) MJCocoaCore
 
+Utilities not dependent on UIKit, so they can be used in iOS, tvOS and macOS projects
+
+
 ## How to 
 
 To install the MJCocoaCore library, just paste the following line in your podfile:
