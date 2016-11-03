@@ -62,6 +62,24 @@ static NSMutableDictionary *_interactorDispatchQueues;
     return self;
 }
 
+#pragma mark Properties
+
+- (void)setQueue:(dispatch_queue_t)queue
+{
+    if (queue == NULL)
+    {
+        [[NSException exceptionWithName:NSInvalidArgumentException reason:@"An interactor cannot work with a NULL queue." userInfo:nil] raise];
+    }
+    
+    if (_isExecuting == YES)
+    {
+        [[NSException exceptionWithName:NSInvalidArgumentException reason:@"Cannot set the queue while the interactor is being executed." userInfo:nil] raise];
+    }
+    
+    _queue = queue;
+}
+
+#pragma mark Public Methods
 
 - (void)begin:(void (^)())block
 {
