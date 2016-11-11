@@ -1,9 +1,9 @@
 {
-  "name": "MJCocoaCore",
-  "version": "0.1.11",
+  "name": "mj-cocoa-core",
+  "version": "1.0.0",
   "summary": "Mobile Jazz Cocoa Core",
   "description": "Common set of reusable classes, categories and definitions for Cocoa.",
-  "homepage": "https://github.com/mobilejazz/MJCocoaCore",
+  "homepage": "https://bitbucket.org/mobilejazz/mj-cocoa-core",
   "license": {
     "type": "Apache License, Version 2.0",
     "file": "LICENSE"
@@ -18,8 +18,8 @@
   },
   "social_media_url": "http://twitter.com/mobilejazz",
   "source": {
-    "git": "https://github.com/mobilejazz/MJCocoaCore.git",
-    "tag": "0.1.11"
+    "git": "https://bitbucket.org/mobilejazz/mj-cocoa-core.git",
+    "tag": "1.0.0"
   },
   "source_files": [
     "Source Code/**/*.{h,m}"
