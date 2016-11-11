@@ -1,3 +1,5 @@
+**WARNING: This project has been moved to [bitbucket](https://bitbucket.org/mobilejazz/mj-cocoa-core). Do not use this version as it is going to be deprecated in the following weeks.**
+
 ![MJCocoaCore](https://raw.githubusercontent.com/mobilejazz/metadata/master/images/banners/mobile-jazz-mjcocoacore.png)
 
 # ![Mobile Jazz Badge](https://raw.githubusercontent.com/mobilejazz/metadata/master/images/icons/mj-40x40.png) MJCocoaCore
