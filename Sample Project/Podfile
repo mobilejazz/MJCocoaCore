@@ -1,0 +1,7 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :osx, '10.11'
+use_frameworks!
+
+target "MJCocoaCore" do
+  pod 'Realm', '~> 2.0'
+end

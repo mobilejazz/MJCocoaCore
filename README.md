@@ -5,10 +5,11 @@
 Utilities not dependent on UIKit, so they can be used in iOS, tvOS and macOS projects
 
 
-## How to 
+## How to install
 
-To install the MJ Cocoa Core library, just paste the following line in your podfile:
-```
+
+To install the MJ Cocoa Core library using [Cocoapods](https://cocoapods.org/), just paste the following line in your podfile:
+```ruby
 pod 'mj-cocoa-core', :git => 'https://bitbucket.org/mobilejazz/mj-cocoa-core.git', :tag => '1.0.0'
 ```
 
@@ -24,7 +25,7 @@ pod 'mj-cocoa-core/MJSecureKey'
 
 ## Dependencies
 
-mj-cocoa-core/Realm rely on Realm, but the dependency is automatically managed by CocoaPods.
+mj-cocoa-core/MJCoreRealm rely on Realm, but the dependency is automatically managed by CocoaPods.
 
 ## Included classes
 ### Categories
@@ -52,3 +53,12 @@ mj-cocoa-core/Realm rely on Realm, but the dependency is automatically managed b
 
 - MJSecureKey
 
+## Running the sample
+
+To run the sample:
+
+- clone this repo
+- `cd` into `Sample Project`
+- run `pod install` from command line
+- use the WorkSpace & enjoy
+- check the Unit tests 
