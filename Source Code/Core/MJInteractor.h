@@ -22,9 +22,10 @@
 @interface MJInteractor : NSObject
 
 /**
- * The dispatch queue.
+ * The dispatch queue. Default is a unique queue shared among all instances of a same class. 
+ * @discussion This queue can be overriden in order to customize the interactor behavior.
  **/
-@property (nonatomic, strong, readonly) dispatch_queue_t queue;
+@property (nonatomic, strong) dispatch_queue_t queue;
 
 /**
  * Executes a block in a background queue.

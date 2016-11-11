@@ -7,6 +7,7 @@ Utilities not dependent on UIKit, so they can be used in iOS, tvOS and macOS pro
 
 ## How to install
 
+
 To install the MJ Cocoa Core library using [Cocoapods](https://cocoapods.org/), just paste the following line in your podfile:
 ```ruby
 pod 'mj-cocoa-core', :git => 'https://bitbucket.org/mobilejazz/mj-cocoa-core.git', :tag => '1.0.0'
