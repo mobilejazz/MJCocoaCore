@@ -51,3 +51,5 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
+Sample Project/Pods
+contents.xcworkspacedata
