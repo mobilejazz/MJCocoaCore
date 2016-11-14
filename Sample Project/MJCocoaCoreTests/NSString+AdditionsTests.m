@@ -43,11 +43,27 @@ static const NSString *testString = @"This is really awesome I mean awesome ++";
     XCTAssertEqualObjects(sut, @"is really awesome I mean awesome ++");
 }
 
+- (void)test_add_random_string {
+    NSString *sut = [NSString add_randomString];
+    
+    XCTAssertNotNil(sut);
+    XCTAssertTrue(sut.length >= 10);
+}
+
+
 - (void)test_add_random_string_with_length {
     NSString *sut = [NSString add_randomStringWithLength:10];
     
     XCTAssertEqual(sut.length, 10);
 }
+
+- (void)test_add_unique_string {
+    NSString *sut = [NSString add_uniqueString];
+    
+    XCTAssertNotNil(sut);
+    XCTAssertTrue(sut.length > 0);
+}
+
 
 - (void)test_add_string_with_components {
     NSArray <NSString *> *components = @[@"This",  @"is", @"really",  @"awesome",  @"I",  @"mean",  @"awesome",  @"++"];

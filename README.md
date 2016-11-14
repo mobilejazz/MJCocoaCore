@@ -30,9 +30,37 @@ mj-cocoa-core/MJCoreRealm rely on Realm, but the dependency is automatically man
 ## Included classes
 ### Categories
 
-#### StringAddition
+#### StringAddition: This category adds some utilities for String manipulation.
 
-- NSString+Additions
+- files `NSString+Additions.h & .m`. 
+
+- `add_words`: this addition splits a String and creates an array with all the "words" in that string
+
+```objectivec
+
+NSString *testString = @"This is really awesome I mean awesome ++";
+NSArray <NSString *> *words = [testString add_words];
+
+// words contains @[@"This",  @"is", @"really",  @"awesome",  @"I",  @"mean",  @"awesome",  @"++"]
+
+```
+
+- `add_firstWord`: this addition returns the first word from a String
+
+```objectivec
+NSString *testString = @"This is really awesome I mean awesome ++";
+NSString *sut = [testString add_firstWord]; // sut contains @"This"
+```
+
+- `add_lastWord`: this addition returns the last word from a String
+
+- `add_stringByDeletingFirstWord`: returns all but the first word in a String
+
+- `add_randomString`: returns a random String, at least 10 characters long
+
+- `add_randomStringWithLength`: returns a random String, with the given length
+
+- `add_uniqueString`: returns a string we can use as identificator
 
 ### Core
 - MJDataProviderDirector
