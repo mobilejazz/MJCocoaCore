@@ -44,7 +44,10 @@
     NSData *tag = [_identifier dataUsingEncoding:NSUTF8StringEncoding];
     
     uint8_t buffer[_length];
-    SecRandomCopyBytes(kSecRandomDefault, _length, buffer);
+    int result = SecRandomCopyBytes(kSecRandomDefault, _length, buffer);
+    if (result == -1)
+        NSLog(@"Error executing SecRandomCopyBytes() method");
+    
     NSData *keyData = [[NSData alloc] initWithBytes:buffer length:sizeof(buffer)];
     
     NSDictionary *query = @{(__bridge id)kSecClass: (__bridge id)kSecClassKey,
@@ -113,7 +116,10 @@
         // If no pre-existing key from this application
         
         uint8_t buffer[_length];
-        SecRandomCopyBytes(kSecRandomDefault, _length, buffer);
+        int result = SecRandomCopyBytes(kSecRandomDefault, _length, buffer);
+        if (result == -1)
+            NSLog(@"Error executing SecRandomCopyBytes() method");
+        
         NSData *keyData = [[NSData alloc] initWithBytes:buffer length:sizeof(buffer)];
         
         // Store the key in the keychain
