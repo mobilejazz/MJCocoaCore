@@ -6,8 +6,8 @@
 //  Copyright © 2016 MobileJazz. All rights reserved.
 //
 
-#ifndef MJCocoaCore_h
-#define MJCocoaCore_h
+#ifndef mj_cocoa_core_h
+#define mj_cocoa_core_h
 
 // Categories
 #import "NSString+Additions.h"
@@ -20,6 +20,8 @@
 #import "MJModelObject.h"
 #import "MJDRealmObject.h"
 #import "MJDRealmMapper.h"
+#import "MJDRealmFactory.h"
+#import "MJDRealmCacheService.h"
 
 // Other
 #import "MJAppLinkRecognizer.h"
