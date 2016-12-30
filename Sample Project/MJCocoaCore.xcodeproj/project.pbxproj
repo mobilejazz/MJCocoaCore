@@ -23,6 +23,8 @@
 		D22F7B1C1CEDD1590017B9BF /* MJDRealmObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B071CEDD1590017B9BF /* MJDRealmObject.m */; };
 		D22F7B1D1CEDD1590017B9BF /* MJAppLinkRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B091CEDD1590017B9BF /* MJAppLinkRecognizer.m */; };
 		D22F7B1F1CEDD1590017B9BF /* MJSecureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B0E1CEDD1590017B9BF /* MJSecureKey.m */; };
+		D2D65DEC1E16884600C5AA98 /* MJDRealmCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D65DE91E16884600C5AA98 /* MJDRealmCacheService.m */; };
+		D2D65DED1E16884600C5AA98 /* MJDRealmFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D65DEB1E16884600C5AA98 /* MJDRealmFactory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,10 @@
 		D22F7B0A1CEDD1590017B9BF /* MJCocoaCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJCocoaCore.h; sourceTree = "<group>"; };
 		D22F7B0D1CEDD1590017B9BF /* MJSecureKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSecureKey.h; sourceTree = "<group>"; };
 		D22F7B0E1CEDD1590017B9BF /* MJSecureKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSecureKey.m; sourceTree = "<group>"; };
+		D2D65DE81E16884600C5AA98 /* MJDRealmCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDRealmCacheService.h; sourceTree = "<group>"; };
+		D2D65DE91E16884600C5AA98 /* MJDRealmCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDRealmCacheService.m; sourceTree = "<group>"; };
+		D2D65DEA1E16884600C5AA98 /* MJDRealmFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDRealmFactory.h; sourceTree = "<group>"; };
+		D2D65DEB1E16884600C5AA98 /* MJDRealmFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDRealmFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +239,10 @@
 		D22F7B041CEDD1590017B9BF /* Realm */ = {
 			isa = PBXGroup;
 			children = (
+				D2D65DE81E16884600C5AA98 /* MJDRealmCacheService.h */,
+				D2D65DE91E16884600C5AA98 /* MJDRealmCacheService.m */,
+				D2D65DEA1E16884600C5AA98 /* MJDRealmFactory.h */,
+				D2D65DEB1E16884600C5AA98 /* MJDRealmFactory.m */,
 				D22F7B051CEDD1590017B9BF /* MJDRealmMapper.h */,
 				D22F7B061CEDD1590017B9BF /* MJDRealmObject.h */,
 				D22F7B071CEDD1590017B9BF /* MJDRealmObject.m */,
@@ -422,6 +432,8 @@
 			files = (
 				D22F7A521CEDC6330017B9BF /* ViewController.m in Sources */,
 				D22F7B181CEDD1590017B9BF /* MJDataProviderDirector.m in Sources */,
+				D2D65DED1E16884600C5AA98 /* MJDRealmFactory.m in Sources */,
+				D2D65DEC1E16884600C5AA98 /* MJDRealmCacheService.m in Sources */,
 				D22F7B191CEDD1590017B9BF /* MJDEntity.m in Sources */,
 				D22F7A4F1CEDC6330017B9BF /* main.m in Sources */,
 				D22F7B1A1CEDD1590017B9BF /* MJInteractor.m in Sources */,
