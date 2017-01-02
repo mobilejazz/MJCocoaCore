@@ -79,7 +79,7 @@
 		D22F7B071CEDD1590017B9BF /* MJDRealmObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDRealmObject.m; sourceTree = "<group>"; };
 		D22F7B081CEDD1590017B9BF /* MJAppLinkRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJAppLinkRecognizer.h; sourceTree = "<group>"; };
 		D22F7B091CEDD1590017B9BF /* MJAppLinkRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJAppLinkRecognizer.m; sourceTree = "<group>"; };
-		D22F7B0A1CEDD1590017B9BF /* mj_cocoa_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mj_cocoa_core.h; sourceTree = "<group>"; };
+		D22F7B0A1CEDD1590017B9BF /* MJCocoaCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJCocoaCore.h; sourceTree = "<group>"; };
 		D22F7B0D1CEDD1590017B9BF /* MJSecureKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSecureKey.h; sourceTree = "<group>"; };
 		D22F7B0E1CEDD1590017B9BF /* MJSecureKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSecureKey.m; sourceTree = "<group>"; };
 		D2D65DE81E16884600C5AA98 /* MJDRealmCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDRealmCacheService.h; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 		D22F7AE91CEDD1590017B9BF /* Source Code */ = {
 			isa = PBXGroup;
 			children = (
-				D22F7B0A1CEDD1590017B9BF /* mj_cocoa_core.h */,
+				D22F7B0A1CEDD1590017B9BF /* MJCocoaCore.h */,
 				D22F7AEA1CEDD1590017B9BF /* Categories */,
 				D22F7AFA1CEDD1590017B9BF /* Core */,
 				D22F7B081CEDD1590017B9BF /* MJAppLinkRecognizer.h */,

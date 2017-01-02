@@ -6,8 +6,8 @@
 //  Copyright © 2016 MobileJazz. All rights reserved.
 //
 
-#ifndef mj_cocoa_core_h
-#define mj_cocoa_core_h
+#ifndef MJCocoaCore_h
+#define MJCocoaCore_h
 
 // Categories
 #import "NSString+Additions.h"
