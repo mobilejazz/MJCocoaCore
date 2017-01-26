@@ -18,16 +18,18 @@
 
 #import "MJFuture.h"
 
-@interface MJFutureExecutor : NSObject <MJFutureObserver>
+@interface MJFutureExecutor <T> : NSObject <MJFutureObserver>
 
-@property (nonatomic, strong) dispatch_queue_t queue;
+- (id)initWithQueue:(dispatch_queue_t)queue;
+
+@property (nonatomic, strong, readonly) dispatch_queue_t queue;
 
 @property (nonatomic, assign, readonly) BOOL isExecuting;
 
 - (void)execute:(void (^)())block;
 
 - (void)complete;
-- (void)completeWithAllFutures:(NSArray <MJFuture*> *)futures;
-- (void)completeWithAnyFuture:(NSArray <MJFuture*> *)futures;
+- (void)completeWithAllFutures:(NSArray <MJFuture <T> *> *)futures;
+- (void)completeWithAnyFuture:(NSArray <MJFuture <T> *> *)futures;
 
 @end

@@ -61,8 +61,7 @@ static NSMutableDictionary *_interactorDispatchQueues;
             _queue = queue;
         }
         
-        _executor = [[MJFutureExecutor alloc] init];
-        _executor.queue = _queue;
+        _executor = [[MJFutureExecutor alloc] initWithQueue:_queue];
     }
     return self;
 }
@@ -82,7 +81,7 @@ static NSMutableDictionary *_interactorDispatchQueues;
     }
     
     _queue = queue;
-    _executor.queue = queue;
+    _executor = [[MJFutureExecutor alloc] initWithQueue:_queue];
 }
 
 #pragma mark Public Methods

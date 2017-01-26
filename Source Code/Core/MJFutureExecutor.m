@@ -51,17 +51,23 @@
 
 @end
 
+@interface MJFutureExecutor ()
+
+@property (nonatomic, strong, readwrite) dispatch_queue_t queue;
+
+@end
+
 @implementation MJFutureExecutor
 {
     MJFutureExecutorItem *_currentItem;
 }
 
-- (instancetype)init
+- (instancetype)initWithQueue:(dispatch_queue_t)queue
 {
     self = [super init];
     if (self)
     {
-        
+        _queue = queue;
     }
     return self;
 }
@@ -91,20 +97,20 @@
     [_currentItem complete];
 }
 
-- (void)completeWithAllFutures:(NSArray <MJFuture*> *)futures
+- (void)completeWithAllFutures:(NSArray <MJFuture <id> *> *)futures
 {
     _currentItem.futureCounter += futures.count; // All futures must finish to complete
     
-    [futures enumerateObjectsUsingBlock:^(MJFuture * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [futures enumerateObjectsUsingBlock:^(MJFuture <id> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj addObserver:self];
     }];
 }
 
-- (void)completeWithAnyFuture:(NSArray <MJFuture*> *)futures
+- (void)completeWithAnyFuture:(NSArray <MJFuture <id> *> *)futures
 {
     _currentItem.futureCounter = 1; // When finishing any future, will complete
     
-    [futures enumerateObjectsUsingBlock:^(MJFuture * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [futures enumerateObjectsUsingBlock:^(MJFuture <id> * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [obj addObserver:self];
     }];
 }
