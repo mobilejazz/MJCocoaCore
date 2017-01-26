@@ -23,8 +23,12 @@
 		D22F7B1C1CEDD1590017B9BF /* MJDRealmObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B071CEDD1590017B9BF /* MJDRealmObject.m */; };
 		D22F7B1D1CEDD1590017B9BF /* MJAppLinkRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B091CEDD1590017B9BF /* MJAppLinkRecognizer.m */; };
 		D22F7B1F1CEDD1590017B9BF /* MJSecureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B0E1CEDD1590017B9BF /* MJSecureKey.m */; };
+		D2BDDEE41E3A2111001672F2 /* MJFutureExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BDDEE31E3A2111001672F2 /* MJFutureExecutor.m */; };
+		D2BDDEE61E3A4BD8001672F2 /* MJFutureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BDDEE51E3A4BD8001672F2 /* MJFutureTests.m */; };
 		D2D65DEC1E16884600C5AA98 /* MJDRealmCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D65DE91E16884600C5AA98 /* MJDRealmCacheService.m */; };
 		D2D65DED1E16884600C5AA98 /* MJDRealmFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D65DEB1E16884600C5AA98 /* MJDRealmFactory.m */; };
+		D2FF97591E38ED5D002B19A9 /* MJFuture.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF97581E38ED5D002B19A9 /* MJFuture.m */; };
+		D2FF975F1E38F7C1002B19A9 /* MJFutureBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D2FF975E1E38F7C1002B19A9 /* MJFutureBatch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,10 +86,17 @@
 		D22F7B0A1CEDD1590017B9BF /* MJCocoaCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJCocoaCore.h; sourceTree = "<group>"; };
 		D22F7B0D1CEDD1590017B9BF /* MJSecureKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSecureKey.h; sourceTree = "<group>"; };
 		D22F7B0E1CEDD1590017B9BF /* MJSecureKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSecureKey.m; sourceTree = "<group>"; };
+		D2BDDEE21E3A2111001672F2 /* MJFutureExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFutureExecutor.h; sourceTree = "<group>"; };
+		D2BDDEE31E3A2111001672F2 /* MJFutureExecutor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFutureExecutor.m; sourceTree = "<group>"; };
+		D2BDDEE51E3A4BD8001672F2 /* MJFutureTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFutureTests.m; sourceTree = "<group>"; };
 		D2D65DE81E16884600C5AA98 /* MJDRealmCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDRealmCacheService.h; sourceTree = "<group>"; };
 		D2D65DE91E16884600C5AA98 /* MJDRealmCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDRealmCacheService.m; sourceTree = "<group>"; };
 		D2D65DEA1E16884600C5AA98 /* MJDRealmFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDRealmFactory.h; sourceTree = "<group>"; };
 		D2D65DEB1E16884600C5AA98 /* MJDRealmFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDRealmFactory.m; sourceTree = "<group>"; };
+		D2FF97571E38ED5D002B19A9 /* MJFuture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFuture.h; sourceTree = "<group>"; };
+		D2FF97581E38ED5D002B19A9 /* MJFuture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFuture.m; sourceTree = "<group>"; };
+		D2FF975D1E38F7C1002B19A9 /* MJFutureBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFutureBatch.h; sourceTree = "<group>"; };
+		D2FF975E1E38F7C1002B19A9 /* MJFutureBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFutureBatch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +193,7 @@
 			children = (
 				D22F7A631CEDC6330017B9BF /* Info.plist */,
 				9995A99B1DD5C5600022690F /* NSString+AdditionsTests.m */,
+				D2BDDEE51E3A4BD8001672F2 /* MJFutureTests.m */,
 			);
 			path = MJCocoaCoreTests;
 			sourceTree = "<group>";
@@ -227,10 +239,16 @@
 				D22F7AFD1CEDD1590017B9BF /* MJDEntity.h */,
 				D22F7AFE1CEDD1590017B9BF /* MJDEntity.m */,
 				D22F7AFF1CEDD1590017B9BF /* MJDEntityMapper.h */,
-				D22F7B001CEDD1590017B9BF /* MJInteractor.h */,
-				D22F7B011CEDD1590017B9BF /* MJInteractor.m */,
 				D22F7B021CEDD1590017B9BF /* MJModelObject.h */,
 				D22F7B031CEDD1590017B9BF /* MJModelObject.m */,
+				D22F7B001CEDD1590017B9BF /* MJInteractor.h */,
+				D22F7B011CEDD1590017B9BF /* MJInteractor.m */,
+				D2BDDEE21E3A2111001672F2 /* MJFutureExecutor.h */,
+				D2BDDEE31E3A2111001672F2 /* MJFutureExecutor.m */,
+				D2FF97571E38ED5D002B19A9 /* MJFuture.h */,
+				D2FF97581E38ED5D002B19A9 /* MJFuture.m */,
+				D2FF975D1E38F7C1002B19A9 /* MJFutureBatch.h */,
+				D2FF975E1E38F7C1002B19A9 /* MJFutureBatch.m */,
 				D22F7B041CEDD1590017B9BF /* Realm */,
 			);
 			path = Core;
@@ -431,6 +449,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D22F7A521CEDC6330017B9BF /* ViewController.m in Sources */,
+				D2FF97591E38ED5D002B19A9 /* MJFuture.m in Sources */,
 				D22F7B181CEDD1590017B9BF /* MJDataProviderDirector.m in Sources */,
 				D2D65DED1E16884600C5AA98 /* MJDRealmFactory.m in Sources */,
 				D2D65DEC1E16884600C5AA98 /* MJDRealmCacheService.m in Sources */,
@@ -442,6 +461,8 @@
 				D22F7B1B1CEDD1590017B9BF /* MJModelObject.m in Sources */,
 				D22F7A4C1CEDC6330017B9BF /* AppDelegate.m in Sources */,
 				D22F7B1D1CEDD1590017B9BF /* MJAppLinkRecognizer.m in Sources */,
+				D2BDDEE41E3A2111001672F2 /* MJFutureExecutor.m in Sources */,
+				D2FF975F1E38F7C1002B19A9 /* MJFutureBatch.m in Sources */,
 				D22F7B1F1CEDD1590017B9BF /* MJSecureKey.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9995A99C1DD5C5600022690F /* NSString+AdditionsTests.m in Sources */,
+				D2BDDEE61E3A4BD8001672F2 /* MJFutureTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
