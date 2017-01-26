@@ -159,6 +159,23 @@
     [self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
+- (void)test_wont_happen
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"1"];
+    
+    [_future then:^(NSString *object, NSError *error) {
+        XCTFail();
+    }];
+    
+    [_future wontHappen];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [expectation fulfill];
+    });
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
 #pragma mark - Private Methods
 
 - (NSError*)mjz_fakeError
