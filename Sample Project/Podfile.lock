@@ -1,14 +1,14 @@
 PODS:
-  - Realm (2.0.3):
-    - Realm/Headers (= 2.0.3)
-  - Realm/Headers (2.0.3)
+  - Realm (2.4.2):
+    - Realm/Headers (= 2.4.2)
+  - Realm/Headers (2.4.2)
 
 DEPENDENCIES:
   - Realm (~> 2.0)
 
 SPEC CHECKSUMS:
-  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
+  Realm: d27b758e12d62a3371879a065d4c40aa212c5a54
 
 PODFILE CHECKSUM: 8c83beed5e8a3adea129ff5b0923b7f3ff1f967d
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0.beta.3
