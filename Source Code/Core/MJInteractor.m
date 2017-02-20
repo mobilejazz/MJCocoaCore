@@ -102,26 +102,41 @@ static NSMutableDictionary *_interactorDispatchQueues;
 {
     if ([NSThread isMainThread])
     {
-        block();
+		if (block)
+		{
+			block();
+		}
         [self willChangeValueForKey:@"isExecuting"];
         _isExecuting = NO;
         [self didChangeValueForKey:@"isExecuting"];
         if (_semaphore != NULL)
+		{
             dispatch_semaphore_signal(_semaphore);
+		}
     }
     else
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            block();
+			if (block)
+			{
+				block();
+			}
             [self willChangeValueForKey:@"isExecuting"];
             _isExecuting = NO;
             [self didChangeValueForKey:@"isExecuting"];
             if (_semaphore != NULL)
+			{
                 dispatch_semaphore_signal(_semaphore);
+			}
         });
     }
     
     _refresh = NO;
+}
+
+- (void)end
+{
+	[self end:nil];
 }
 
 - (void)setNeedsRefresh

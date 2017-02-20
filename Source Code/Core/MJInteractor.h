@@ -45,6 +45,10 @@
  **/
 - (void)end:(void (^)())block;
 
+/**
+ Unblock the interactor thread. This is equal to calliung end with parameter nil
+ */
+- (void)end;
 
 /**
  * YES if executing, NO otherwise. This property is KVO compliant.
