@@ -18,11 +18,11 @@
 
 typedef NS_ENUM(NSInteger, MJFutureState)
 {
-    MJFutureStateBlank,
-    MJFutureStateWaitingBlock,
-    MJFutureStateWaitingValueOrError,
-    MJFutureStateSent,
-    MJFutureStateWontHappen,
+	MJFutureStateBlank,
+	MJFutureStateWaitingBlock,
+	MJFutureStateWaitingValueOrError,
+	MJFutureStateSent,
+	MJFutureStateWontHappen
 };
 
 @protocol MJFutureObserver;
@@ -32,22 +32,75 @@ typedef NS_ENUM(NSInteger, MJFutureState)
  **/
 @interface MJFuture <T> : NSObject
 
-+ (MJFuture <T>*)emptyFuture;
-+ (MJFuture <T>*)immediateFuture:(T)value;
+#pragma mark - Creation
 
-@property (nonatomic, strong) dispatch_queue_t returnQueue;
+/**
+ Create an empty future
+
+ @return An empty future
+ */
++ (MJFuture < T>* _Nonnull)emptyFuture;
+
+/**
+ Create an immediate future passing a value
+
+ @param value The value to set to the future
+ @return A future
+ */
++ (MJFuture <T>* _Nonnull)immediateFuture:(_Nonnull T)value;
+
+#pragma mark - Future lifecytle
+
+/**
+ The queue on which the completion block will be called
+ */
+@property (nonatomic, strong, readwrite) dispatch_queue_t _Nonnull returnQueue;
 
 @property (nonatomic, assign, readonly) MJFutureState state;
 
-- (void)setValue:(T)value;
-- (void)setError:(NSError*)error;
+#pragma mark - Future value management
+
+/**
+ Set the value on the future. If the future is ready, the *then* block will be called
+
+ @param value A not null value
+ */
+- (void)setValue:(_Nonnull T)value;
+
+/**
+ Set an error on the future. If the future is ready, the *then* block will be called
+
+ @param error A not null error object
+ */
+- (void)setError:(NSError * _Nonnull)error;
+
+/**
+ Cancel the future execution. This will block any future execution
+ */
 - (void)wontHappen;
 
-- (void)then:(void (^)(T object, NSError *error))block;
-- (void)then:(void (^)(T object, NSError *))block inQueue:(dispatch_queue_t)queue;
+#pragma mark - Future execution
 
-- (void)addObserver:(id <MJFutureObserver>)observer;
-- (void)removeObserver:(id <MJFutureObserver>)observer;
+/**
+ Completion block executed when the future has value.
+ By default this get called on the returnQueue.
+ 
+ @param block The block to be executed, with the object or the error passed as parameter
+ */
+- (void)then:(void (^ _Nullable )(_Nullable T object, NSError *_Nullable error))block;
+
+/**
+ Completion block executed when the future has value.
+
+ @param block The block to be executed, with the object or the error passed as parameter
+ @param queue The queue on which the block will be caled
+ */
+- (void)then:(void (^_Nullable)(_Nullable T object, NSError *_Nullable error))block inQueue:(_Nullable dispatch_queue_t)queue;
+
+#pragma mark - Observer management
+
+- (void)addObserver:(_Nonnull id <MJFutureObserver>)observer;
+- (void)removeObserver:(_Nonnull id <MJFutureObserver>)observer;
 
 @end
 
@@ -59,9 +112,9 @@ typedef NS_ENUM(NSInteger, MJFutureState)
 
 @optional
 
-- (void)future:(MJFuture *)future didSetValue:(id)value;
-- (void)future:(MJFuture *)future didSetError:(NSError*)error;
-- (void)wontHappenFuture:(MJFuture*)future;
-- (void)didSendFuture:(MJFuture*)future;
+- (void)future:(MJFuture *_Nonnull)future didSetValue:(_Nonnull id)value;
+- (void)future:(MJFuture *_Nonnull)future didSetError:(NSError *_Nonnull)error;
+- (void)wontHappenFuture:(MJFuture *_Nonnull)future;
+- (void)didSendFuture:(MJFuture *_Nonnull)future;
 
 @end
