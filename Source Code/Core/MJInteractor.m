@@ -29,6 +29,8 @@ static NSMutableDictionary *_interactorDispatchQueues;
     dispatch_semaphore_t _semaphore;
 }
 
+@synthesize isExecuting = _isExecuting;
+
 + (void)initialize
 {
     static dispatch_once_t onceToken;
@@ -58,6 +60,8 @@ static NSMutableDictionary *_interactorDispatchQueues;
             
             _queue = queue;
         }
+        
+        _executor = [[MJFutureExecutor alloc] initWithQueue:_queue];
     }
     return self;
 }
@@ -71,12 +75,13 @@ static NSMutableDictionary *_interactorDispatchQueues;
         [[NSException exceptionWithName:NSInvalidArgumentException reason:@"An interactor cannot work with a NULL queue." userInfo:nil] raise];
     }
     
-    if (_isExecuting == YES)
+    if (self.isExecuting == YES)
     {
         [[NSException exceptionWithName:NSInvalidArgumentException reason:@"Cannot set the queue while the interactor is being executed." userInfo:nil] raise];
     }
     
     _queue = queue;
+    _executor = [[MJFutureExecutor alloc] initWithQueue:_queue];
 }
 
 #pragma mark Public Methods
@@ -122,6 +127,11 @@ static NSMutableDictionary *_interactorDispatchQueues;
 - (void)setNeedsRefresh
 {
     _refresh = YES;
+}
+
+- (BOOL)isExecuting
+{
+    return _isExecuting || _executor.isExecuting;
 }
 
 @end

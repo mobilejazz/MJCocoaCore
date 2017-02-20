@@ -65,13 +65,13 @@
  ** ************************************************************ **/
 
 /**
- * Returns an unique string.
+ * Returns an unique string based on CFUUIDCreate. This string can be used as an identifier
  * @return An unique string.
  **/
 + (nonnull NSString*)add_uniqueString;
 
 /**
- * Creates a random string.
+ * Creates a random string at least 10 chars long.
  * @return A random string.
  **/
 + (nonnull NSString*)add_randomString;

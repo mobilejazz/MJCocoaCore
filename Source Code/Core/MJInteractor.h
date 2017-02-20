@@ -15,6 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MJFutureExecutor.h"
 
 /**
  * Interactor superclass.
@@ -28,6 +29,11 @@
 @property (nonatomic, strong) dispatch_queue_t queue;
 
 /**
+ * Future executor. Use this executor to manage the threading.
+ **/
+@property (nonatomic, strong) MJFutureExecutor *executor;
+
+/**
  * Executes a block in a background queue.
  * @discussion A `begin` call must be in corresponded to a `end` call.
  **/
@@ -38,6 +44,7 @@
  * @discussion A `begin` call must be in corresponded to a `end` call.
  **/
 - (void)end:(void (^)())block;
+
 
 /**
  * YES if executing, NO otherwise. This property is KVO compliant.

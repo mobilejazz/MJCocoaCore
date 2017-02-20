@@ -1,9 +1,9 @@
 {
   "name": "MJCocoaCore",
-  "version": "0.1.11",
+  "version": "1.4.0",
   "summary": "Mobile Jazz Cocoa Core",
   "description": "Common set of reusable classes, categories and definitions for Cocoa.",
-  "homepage": "https://github.com/mobilejazz/MJCocoaCore",
+  "homepage": "https://bitbucket.org/mobilejazz/mjcocoacore",
   "license": {
     "type": "Apache License, Version 2.0",
     "file": "LICENSE"
@@ -18,8 +18,8 @@
   },
   "social_media_url": "http://twitter.com/mobilejazz",
   "source": {
-    "git": "https://github.com/mobilejazz/MJCocoaCore.git",
-    "tag": "0.1.11"
+    "git": "https://bitbucket.org/mobilejazz/mjcocoacore.git",
+    "tag": "1.4.0"
   },
   "source_files": [
     "Source Code/**/*.{h,m}"
@@ -41,7 +41,7 @@
       "name": "MJCoreRealm",
       "source_files": "Source Code/Core/Realm/*.{h,m}",
       "dependencies": {
-        "Realm": ["~>0.103"]
+        "Realm": ["~>2.0"]
       }
     },
     {
