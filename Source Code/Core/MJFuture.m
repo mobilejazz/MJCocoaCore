@@ -16,6 +16,9 @@
 
 #import "MJFuture.h"
 
+NSString * const MJFutureValueNotAvailableException = @"MJFutureValueNotAvailableException";
+NSString * const MJFutureErrorKey = @"MJFutureErrorKey";
+
 #define MJFutureDuplicateInvocationException(method) [NSException exceptionWithName:NSInternalInconsistencyException reason:[NSString stringWithFormat:@"MJFuture doesn't allow calling twice the method <%@>.", NSStringFromSelector(@selector(method))] userInfo:nil]
 
 #define MJFutureAlreadySentException [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Future already sent." userInfo:nil]
@@ -32,6 +35,8 @@
 	id _error;
 	
 	dispatch_queue_t _customQueue;
+    
+    dispatch_semaphore_t _semaphore;
 	
 	NSHashTable <id <MJFutureObserver>> *_observers;
 }
@@ -138,6 +143,45 @@
 	}
 }
 
+- (_Nullable id)value
+{
+    if (_state == MJFutureStateWaitingBlock)
+    {
+        if (_value)
+        {
+            _state = MJFutureStateSent;
+            return _value;
+        }
+        else if (_error)
+        {
+            NSException *exception = [NSException exceptionWithName:MJFutureValueNotAvailableException
+                                                             reason:@"Value is not available."
+                                                           userInfo:@{MJFutureErrorKey: _error}];
+            @throw exception;
+        }
+        else
+        {
+            NSAssert(NO, @"Invalid future state");
+        }
+    }
+    else if (_state == MJFutureStateBlank)
+    {
+        _semaphore = dispatch_semaphore_create(0);
+        dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
+        
+        return [self value];
+    }
+    else
+    {
+        NSException *exception = [NSException exceptionWithName:NSInternalInconsistencyException
+                                                         reason:@"Misusage of futre"
+                                                       userInfo:nil];
+        @throw exception;
+    }
+    
+    return nil;
+}
+
 - (void)addObserver:(id <MJFutureObserver>)observer
 {
 	[_observers addObject:observer];
@@ -188,6 +232,7 @@
 		if (_value || _error)
 		{
 			_state = MJFutureStateWaitingBlock;
+            dispatch_semaphore_signal(_semaphore);
 		}
 		else if (_thenBlock)
 		{

@@ -176,6 +176,25 @@
     [self waitForExpectationsWithTimeout:2 handler:nil];
 }
 
+- (void)test_sync_value
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"1"];
+    NSString *value = @"Hello";
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSString *futureValue = [_future value];
+        XCTAssertEqualObjects(value, futureValue);
+        [expectation fulfill];
+    });
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_future setValue:value];
+    });
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
+
 #pragma mark - Private Methods
 
 - (NSError*)mjz_fakeError

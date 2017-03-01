@@ -25,6 +25,9 @@ typedef NS_ENUM(NSInteger, MJFutureState)
 	MJFutureStateWontHappen
 };
 
+extern NSString * _Nonnull const MJFutureValueNotAvailableException;
+extern NSString * _Nonnull const MJFutureErrorKey;
+
 @protocol MJFutureObserver;
 
 /**
@@ -96,6 +99,13 @@ typedef NS_ENUM(NSInteger, MJFutureState)
  @param queue The queue on which the block will be caled
  */
 - (void)then:(void (^_Nullable)(_Nullable T object, NSError *_Nullable error))block inQueue:(_Nullable dispatch_queue_t)queue;
+
+/**
+ Block the current thread until the value is obtained or return the value direclty if it is already availble.
+ @return The future value.
+ @discussion If error, this method returns nil and throws an exception.
+ */
+- (_Nullable T)value;
 
 #pragma mark - Observer management
 
