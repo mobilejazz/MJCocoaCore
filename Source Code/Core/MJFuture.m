@@ -232,7 +232,11 @@ NSString * const MJFutureErrorKey = @"MJFutureErrorKey";
 		if (_value || _error)
 		{
 			_state = MJFutureStateWaitingBlock;
-            dispatch_semaphore_signal(_semaphore);
+            
+            if (_semaphore != nil)
+            {
+                dispatch_semaphore_signal(_semaphore);
+            }
 		}
 		else if (_thenBlock)
 		{
