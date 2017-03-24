@@ -82,15 +82,15 @@
     return [string copy];
 }
 
-+ (nonnull NSString*)add_stringWithComponents:(nonnull NSArray<NSString*>*)compontents joinedWithString:(nullable NSString*)string
++ (nonnull NSString*)add_stringWithComponents:(nonnull NSArray<NSString*>*)components joinedWithString:(nullable NSString*)string
 {
     NSMutableString *str = [[NSMutableString alloc] init];
     
-    for (NSInteger index = 0; index<compontents.count; ++index)
+    for (NSInteger index = 0; index<components.count; ++index)
     {
-        NSString *cmpt = compontents[index];
+        NSString *cmpt = components[index];
         [str appendString:cmpt];
-        if (index < compontents.count - 1)
+        if (index < components.count - 1)
             [str appendString:string];
     }
     

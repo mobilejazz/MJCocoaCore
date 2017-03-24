@@ -88,7 +88,7 @@
  * @param string The join string being placed in the middle of each component.
  * @return The new joined string.
  **/
-+ (nonnull NSString*)add_stringWithComponents:(nonnull NSArray<NSString*>*)compontents joinedWithString:(nullable NSString*)string;
++ (nonnull NSString*)add_stringWithComponents:(nonnull NSArray<NSString*>*)components joinedWithString:(nullable NSString*)string;
 
 @end
 

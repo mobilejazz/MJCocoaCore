@@ -32,13 +32,13 @@
 
 /**
  * Provides a realm scope for read only operations.
- * @param realm The realm instance.
+ * @param block The block that provides a realm instance.
  **/
 - (void)read:(void (^)(RLMRealm *realm))block;
 
 /**
  * Provides a realm scope for write only operations.
- * @param realm The realm instance.
+ * @param block The block that provides a realm instance.
  * @discussion This method generates a realm transaction and manages it automatically.
  **/
 - (NSError*)write:(void (^)(RLMRealm *realm))block;
