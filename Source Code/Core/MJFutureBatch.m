@@ -16,6 +16,8 @@
 
 #import "MJFutureBatch.h"
 
+static NSMutableArray * batches = nil;
+
 @implementation MJFutureBatch
 {
     NSArray <MJFuture*> *_futures;
@@ -38,9 +40,43 @@
 
 - (void)then:(void (^)(id object, NSError *error))block
 {
-    [_futures enumerateObjectsUsingBlock:^(MJFuture * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [obj then:block];
+    [self then:block completion:^(NSError *error) {
+        // Nothing to do
     }];
+}
+
+- (void)then:(void (^)(id object, NSError *error))block completion:(void (^)(NSError *error))completion
+{
+    [batches addObject:self];
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    __block NSError *error = nil;
+    
+    [_futures enumerateObjectsUsingBlock:^(MJFuture * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        dispatch_group_enter(group);
+        
+        [obj then:^(id object, NSError *futureError) {
+            if (block)
+            {
+                block(object, futureError);
+            }
+            
+            if (futureError && !error)
+            {
+                error = futureError;
+            }
+            
+            dispatch_group_leave(group);
+        }];
+    }];
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        if (completion)
+            completion(error);
+        
+        [batches removeObject:self];
+    });
 }
 
 @end
