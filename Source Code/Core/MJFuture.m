@@ -23,6 +23,8 @@ NSString * const MJFutureErrorKey = @"MJFutureErrorKey";
 
 #define MJFutureAlreadySentException [NSException exceptionWithName:NSInternalInconsistencyException reason:@"Future already sent." userInfo:nil]
 
+static dispatch_queue_t defaultReturnQueue = nil;
+
 @interface MJFuture()
 
 @property (nonatomic, copy, readwrite) void (^thenBlock)(id, NSError *);
@@ -39,6 +41,11 @@ NSString * const MJFutureErrorKey = @"MJFutureErrorKey";
     dispatch_semaphore_t _semaphore;
 	
 	NSHashTable <id <MJFutureObserver>> *_observers;
+}
+
++ (void)setDefaultReturnQueue:(dispatch_queue_t)queue
+{
+    defaultReturnQueue = queue;
 }
 
 + (MJFuture *)emptyFuture
@@ -60,8 +67,17 @@ NSString * const MJFutureErrorKey = @"MJFutureErrorKey";
 	if (self)
 	{
 		_state = MJFutureStateBlank;
-		_returnQueue = dispatch_get_main_queue();
 		_observers = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
+        
+        if (defaultReturnQueue)
+        {
+            _returnQueue = defaultReturnQueue;
+        }
+        else
+        {
+            _returnQueue = dispatch_get_main_queue();
+        }
+        
 	}
 	return self;
 }

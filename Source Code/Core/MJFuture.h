@@ -35,6 +35,12 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  **/
 @interface MJFuture <T> : NSObject
 
+/**
+ * Sets the default reutrn queue
+ * @param queue The default return queue
+ **/
++ (void)setDefaultReturnQueue:(dispatch_queue_t _Nonnull)queue;
+
 #pragma mark - Creation
 
 /**
