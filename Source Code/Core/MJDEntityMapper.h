@@ -43,19 +43,19 @@
 /**
  * Converts an array of entities into an array of objects.
  **/
-static inline NSArray<__kindof MJModelObject*>* MJModelObjectArrayFromEntitiesArray(NSArray <__kindof MJDEntity*> *array, id <MJDEntityMapper> mapper)
+static inline NSArray<__kindof MJModelObject *> *MJModelObjectArrayFromEntitiesArray(NSArray <__kindof MJDEntity *> *array, id <MJDEntityMapper> mapper)
 {
     if (array.count == 0 || mapper == nil)
         return nil;
-    
-    NSMutableArray <__kindof MJModelObject*> *objects = [NSMutableArray array];
-    for (NSInteger i=0; i<array.count; ++i)
+
+    NSMutableArray <__kindof MJModelObject *> *objects = [NSMutableArray array];
+    for (NSInteger i = 0; i < array.count; ++i)
     {
-        MJDEntity *entity = (id)[array objectAtIndex:i];
+        MJDEntity *entity = (id) [array objectAtIndex:i];
         MJModelObject *object = [mapper objectFromEntity:entity];
         [objects addObject:object];
     }
-    
+
     return [objects copy];
 }
 
@@ -63,18 +63,21 @@ static inline NSArray<__kindof MJModelObject*>* MJModelObjectArrayFromEntitiesAr
 /**
  * Converts an array of objects into an array of entities.
  **/
-static inline NSArray<__kindof MJDEntity*>* MJDEntityArrayFromObjectsArray(NSArray <__kindof MJModelObject*> *array, id <MJDEntityMapper> mapper)
+static inline NSArray<__kindof MJDEntity *> *MJDEntityArrayFromObjectsArray(NSArray <__kindof MJModelObject *> *array, id <MJDEntityMapper> mapper)
 {
-    if (array.count == 0 || mapper == nil)
+    if (mapper == nil)
         return nil;
-    
-    NSMutableArray <__kindof MJDEntity*> *entities = [NSMutableArray array];
-    for (NSInteger i=0; i<array.count; ++i)
+
+    if (array.count == 0)
+        return @[];
+
+    NSMutableArray <__kindof MJDEntity *> *entities = [NSMutableArray array];
+    for (NSInteger i = 0; i < array.count; ++i)
     {
-        MJModelObject *object = (id)[array objectAtIndex:i];
+        MJModelObject *object = (id) [array objectAtIndex:i];
         MJDEntity *entity = [mapper entityFromObject:object];
         [entities addObject:entity];
     }
-    
+
     return [entities copy];
 }
