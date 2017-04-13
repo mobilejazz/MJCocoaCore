@@ -86,6 +86,14 @@ static NSMutableDictionary *_interactorDispatchQueues;
 
 #pragma mark Public Methods
 
+- (void)perform:(void (^)())block
+{
+    [self begin:^{
+        block();
+        [self end];
+    }];
+}
+
 - (void)begin:(void (^)())block
 {
     [self willChangeValueForKey:@"isExecuting"];
@@ -102,32 +110,32 @@ static NSMutableDictionary *_interactorDispatchQueues;
 {
     if ([NSThread isMainThread])
     {
-		if (block)
-		{
-			block();
-		}
+        if (block)
+        {
+            block();
+        }
         [self willChangeValueForKey:@"isExecuting"];
         _isExecuting = NO;
         [self didChangeValueForKey:@"isExecuting"];
         if (_semaphore != NULL)
-		{
+        {
             dispatch_semaphore_signal(_semaphore);
-		}
+        }
     }
     else
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-			if (block)
-			{
-				block();
-			}
+            if (block)
+            {
+                block();
+            }
             [self willChangeValueForKey:@"isExecuting"];
             _isExecuting = NO;
             [self didChangeValueForKey:@"isExecuting"];
             if (_semaphore != NULL)
-			{
+            {
                 dispatch_semaphore_signal(_semaphore);
-			}
+            }
         });
     }
     
@@ -136,7 +144,7 @@ static NSMutableDictionary *_interactorDispatchQueues;
 
 - (void)end
 {
-	[self end:nil];
+    [self end:nil];
 }
 
 - (void)setNeedsRefresh

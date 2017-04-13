@@ -23,7 +23,7 @@
 @interface MJInteractor : NSObject
 
 /**
- * The dispatch queue. Default is a unique queue shared among all instances of a same class. 
+ * The dispatch queue. Default is a unique queue shared among all instances of a same class.
  * @discussion This queue can be overriden in order to customize the interactor behavior.
  **/
 @property (nonatomic, strong) dispatch_queue_t queue;
@@ -34,21 +34,27 @@
 @property (nonatomic, strong) MJFutureExecutor *executor;
 
 /**
- * Executes a block in a background queue.
+ * Executes a block in a background queue. Locks the interactor thread.
  * @discussion A `begin` call must be in corresponded to a `end` call.
  **/
 - (void)begin:(void (^)())block;
 
 /**
- * Executes a block in the main queue.
+ * Executes a block in the main queue. Unlocks the interactor thread.
  * @discussion A `begin` call must be in corresponded to a `end` call.
  **/
 - (void)end:(void (^)())block;
 
 /**
- Unblock the interactor thread. This is equal to calliung end with parameter nil
+ * Unlock the interactor thread. This is equal to calling end with a nil block parameter.
  */
 - (void)end;
+
+/**
+ * Locks the interactor thread, executes the block in a background queue and then unlocks the interactor thread.
+ * @discussion When using this method, do not use neither `-begin:` nor `-end:` or `-end` methods.
+ **/
+- (void)perform:(void (^)())block;
 
 /**
  * YES if executing, NO otherwise. This property is KVO compliant.
