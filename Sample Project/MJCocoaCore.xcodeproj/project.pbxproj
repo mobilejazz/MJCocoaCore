@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2931BC70BA312C9AD9A91DE6 /* Pods_MJCocoaCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F18A5536CCF4E35C58CB3B /* Pods_MJCocoaCore.framework */; };
 		9995A99C1DD5C5600022690F /* NSString+AdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9995A99B1DD5C5600022690F /* NSString+AdditionsTests.m */; };
+		BD0FBCD6747798917DC6C10C /* MJErrorCodes.m in Sources */ = {isa = PBXBuildFile; fileRef = BD0FBF2E38FBA2AE678A2D6C /* MJErrorCodes.m */; };
 		D201CE3F1E3A69C300CE30A9 /* MJFutureExecutorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D201CE3E1E3A69C300CE30A9 /* MJFutureExecutorTests.m */; };
 		D22F7A4C1CEDC6330017B9BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7A4B1CEDC6330017B9BF /* AppDelegate.m */; };
 		D22F7A4F1CEDC6330017B9BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7A4E1CEDC6330017B9BF /* main.m */; };
@@ -54,6 +55,8 @@
 		56F18A5536CCF4E35C58CB3B /* Pods_MJCocoaCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MJCocoaCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9995A99B1DD5C5600022690F /* NSString+AdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AdditionsTests.m"; sourceTree = "<group>"; };
 		ABF58CFD2785D525944A8451 /* Pods-MJCocoaCore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MJCocoaCore.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MJCocoaCore/Pods-MJCocoaCore.debug.xcconfig"; sourceTree = "<group>"; };
+		BD0FB75175DF2456D25A1DBF /* MJErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJErrorCodes.h; sourceTree = "<group>"; };
+		BD0FBF2E38FBA2AE678A2D6C /* MJErrorCodes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJErrorCodes.m; sourceTree = "<group>"; };
 		D201CE3E1E3A69C300CE30A9 /* MJFutureExecutorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFutureExecutorTests.m; sourceTree = "<group>"; };
 		D22F7A471CEDC6330017B9BF /* MJCocoaCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJCocoaCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D22F7A4A1CEDC6330017B9BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -253,6 +256,8 @@
 				D2FF975D1E38F7C1002B19A9 /* MJFutureBatch.h */,
 				D2FF975E1E38F7C1002B19A9 /* MJFutureBatch.m */,
 				D22F7B041CEDD1590017B9BF /* Realm */,
+				BD0FBF2E38FBA2AE678A2D6C /* MJErrorCodes.m */,
+				BD0FB75175DF2456D25A1DBF /* MJErrorCodes.h */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 				D2BDDEE41E3A2111001672F2 /* MJFutureExecutor.m in Sources */,
 				D2FF975F1E38F7C1002B19A9 /* MJFutureBatch.m in Sources */,
 				D22F7B1F1CEDD1590017B9BF /* MJSecureKey.m in Sources */,
+				BD0FBCD6747798917DC6C10C /* MJErrorCodes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 //
 
 #import "MJDRealmCacheService.h"
+#import "MJErrorCodes.h"
 
 @interface MJDRealmCacheService ()
 
@@ -24,7 +25,7 @@
 
 @implementation MJDRealmCacheService
 
-- (instancetype)initWithRealmFactory:(MJDRealmFactory*)realmFactory
+- (instancetype)initWithRealmFactory:(MJDRealmFactory *)realmFactory
 {
     self = [super init];
     if (self)
@@ -40,20 +41,43 @@
     block(realm);
 }
 
-- (NSError*)write:(void (^)(RLMRealm *realm))block
+- (NSError *)write:(void (^)(RLMRealm *realm))block
 {
     NSError *error = nil;
     RLMRealm *realm = [_realmFactory realmInstance];
-    
-    [realm transactionWithBlock:^{
-        block(realm);
-    } error:&error];
-    
-    if (!error)
+
+    BOOL shouldCommitTransaction = NO;
+
+    if (![realm inWriteTransaction])
     {
-        [realm refresh];
+        shouldCommitTransaction = YES;
+        [realm beginWriteTransaction];
     }
-    
+
+    @try
+    {
+        block(realm);
+
+        if (shouldCommitTransaction)
+        {
+            [realm commitWriteTransaction];
+            [realm refresh];
+        }
+    }
+    @catch (NSException *exception)
+    {
+        if (shouldCommitTransaction)
+        {
+            [realm cancelWriteTransaction];
+
+            error = [NSError errorWithDomain:MJErrorDomainRealmStorage code:MJErrorCodeTransactionFailed userInfo:@{NSLocalizedDescriptionKey: exception.reason}];
+        }
+        else
+        {
+            [[exception copy] raise];
+        }
+    }
+
     return error;
 }
 
