@@ -45,8 +45,11 @@
  **/
 static inline NSArray<__kindof MJModelObject *> *MJModelObjectArrayFromEntitiesArray(NSArray <__kindof MJDEntity *> *array, id <MJDEntityMapper> mapper)
 {
-    if (array.count == 0 || mapper == nil)
+    if (mapper == nil)
         return nil;
+
+    if (array.count == 0)
+        return @[];
 
     NSMutableArray <__kindof MJModelObject *> *objects = [NSMutableArray array];
     for (NSInteger i = 0; i < array.count; ++i)
