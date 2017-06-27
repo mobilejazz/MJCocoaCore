@@ -29,6 +29,8 @@ NSString *const MJFutureErrorKey = @"MJFutureErrorKey";
 
 @end
 
+static dispatch_queue_t _defaultReturnQueue;
+
 @implementation MJFuture
 {
     id _value;
@@ -61,10 +63,25 @@ NSString *const MJFutureErrorKey = @"MJFutureErrorKey";
     if (self)
     {
         _state = MJFutureStateBlank;
-        _returnQueue = dispatch_get_main_queue();
+        _returnQueue = nil;
         _observers = [NSHashTable hashTableWithOptions:NSPointerFunctionsWeakMemory];
     }
     return self;
+}
+
++ (void)initialize
+{
+    [super initialize];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _defaultReturnQueue = dispatch_get_main_queue();
+    });
+}
+
++ (void)setDefaultReturnQueue:(dispatch_queue_t _Nonnull)queue
+{
+    _defaultReturnQueue = queue;
 }
 
 - (void)setValue:(id)value
@@ -118,6 +135,18 @@ NSString *const MJFutureErrorKey = @"MJFutureErrorKey";
         {
             NSLog(@"WARNING: Error set in MJFuture with nil value. This is a warning message, nothing is going to happen.");
         }
+    }
+}
+
+- (void)setValue:(id)value error:(NSError *)error
+{
+    if (error)
+    {
+        [self setError:error];
+    }
+    else
+    {
+        [self setValue:value];
     }
 }
 
@@ -284,9 +313,15 @@ NSString *const MJFutureErrorKey = @"MJFutureErrorKey";
             thenBlock(value, error);
         });
     }
-    else
+    else if (_returnQueue)
     {
         dispatch_async(_returnQueue, ^{
+            thenBlock(value, error);
+        });
+    }
+    else
+    {
+        dispatch_async(_defaultReturnQueue, ^{
             thenBlock(value, error);
         });
     }

@@ -35,64 +35,92 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  **/
 @interface MJFuture <T> : NSObject
 
-/**
- * Sets the default reutrn queue
- * @param queue The default return queue
- **/
-+ (void)setDefaultReturnQueue:(dispatch_queue_t _Nonnull)queue;
-
 #pragma mark - Creation
 
+/** ************************************ **
+ @name Creating Futures
+ ** ************************************ **/
+
 /**
- Create an empty future
+ Creates an empty future
 
  @return An empty future
  */
-+ (MJFuture < T>* _Nonnull)emptyFuture;
++ (MJFuture <T>* _Nonnull)emptyFuture;
 
 /**
- Create an immediate future passing a value
+ Creates an immediate future passing a value
 
  @param value The value to set to the future
  @return A future
  */
 + (MJFuture <T>* _Nonnull)immediateFuture:(_Nonnull T)value;
 
-#pragma mark - Future lifecytle
+#pragma mark - Future lifecyle
+
+/** ************************************ **
+ @name Future Lifecycle & Configuration
+ ** ************************************ **/
 
 /**
- The queue on which the completion block will be called
+ The queue on which the completion block will be called. Default is nil.
+ @discussion If nil, the static default queue will be used instead.
  */
 @property (nonatomic, strong, readwrite) dispatch_queue_t _Nonnull returnQueue;
 
+/**
+ Sets the default reutrn queue. Default one is the main queue.
+ 
+ @param queue The default return queue
+ **/
++ (void)setDefaultReturnQueue:(dispatch_queue_t _Nonnull)queue;
+
+/**
+ The state of the future.
+ **/
 @property (nonatomic, assign, readonly) MJFutureState state;
 
 #pragma mark - Future value management
 
+/** ************************************ **
+ @name Setting Values & Errors
+ ** ************************************ **/
+
 /**
- Set the value on the future. If the future is ready, the *then* block will be called
+ Sets the value on the future. If the future is ready, the *then* block will be called
 
  @param value A not null value
  */
-- (void)setValue:(_Nonnull T)value;
+- (void)setValue:(_Nullable T)value;
 
 /**
- Set an error on the future. If the future is ready, the *then* block will be called
+ Sets an error on the future. If the future is ready, the *then* block will be called
 
  @param error A not null error object
  */
 - (void)setError:(NSError * _Nonnull)error;
 
 /**
- Cancel the future execution. This will block any future execution
+ If error, the future sends the error. Otherwise sends the value (even if the value is nil).
+ 
+ @param value The value
+ @param error The error
+ **/
+- (void)setValue:(_Nullable T)value error:(NSError * _Nullable)error;
+
+/**
+ Cancels the future execution. This will block any future execution
  */
 - (void)wontHappen;
 
 #pragma mark - Future execution
 
+/** ************************************ **
+ @name Asynchronous Future Management
+ ** ************************************ **/
+
 /**
  Completion block executed when the future has value.
- By default this get called on the returnQueue.
  
  @param block The block to be executed, with the object or the error passed as parameter
  */
@@ -106,16 +134,39 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  */
 - (void)then:(void (^_Nullable)(_Nullable T object, NSError *_Nullable error))block inQueue:(_Nullable dispatch_queue_t)queue;
 
+/** ************************************ **
+ @name Synchronous Future Management
+ ** ************************************ **/
+
 /**
- Block the current thread until the value is obtained or return the value direclty if it is already availble.
+ Blocks the current thread until the value is obtained or return the value direclty if it is already availble.
+ 
  @return The future value.
- @discussion If error, this method returns nil and throws an exception.
+ @discussion If error, this method returns nil and throws an exception (unless the property `throwsExceptionIfError` is set to NO).
  */
 - (_Nullable T)value;
 
+/**
+ * If YES, the method `value` will throw an exception if the future ends with an error. Default falue is YES.
+ **/
+@property (nonatomic, assign) BOOL throwsExceptionIfError;
+
 #pragma mark - Observer management
 
+/** ************************************ **
+ @name Observing a Future
+ ** ************************************ **/
+
+/**
+ Registers an observer.
+ @param observer An observer
+ **/
 - (void)addObserver:(_Nonnull id <MJFutureObserver>)observer;
+
+/**
+ Unregisters an observer.
+ @param observer An observer
+ **/
 - (void)removeObserver:(_Nonnull id <MJFutureObserver>)observer;
 
 @end
