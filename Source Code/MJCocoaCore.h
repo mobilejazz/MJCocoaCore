@@ -22,6 +22,8 @@
 #import "MJDRealmMapper.h"
 #import "MJDRealmFactory.h"
 #import "MJDRealmCacheService.h"
+#import "MJFuture.h"
+#import "MJFutureBatch.h"
 
 // Other
 #import "MJAppLinkRecognizer.h"
