@@ -15,23 +15,19 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MJFutureExecutor.h"
+
+#import "MJFuture.h"
 
 /**
  * Interactor superclass.
  **/
-@interface MJInteractor : NSObject
+@interface MJInteractor : NSObject <MJFutureObserver>
 
 /**
  * The dispatch queue. Default is a unique queue shared among all instances of a same class.
  * @discussion This queue can be overriden in order to customize the interactor behavior.
  **/
 @property (nonatomic, strong) dispatch_queue_t queue;
-
-/**
- * Future executor. Use this executor to manage the threading.
- **/
-@property (nonatomic, strong) MJFutureExecutor *executor;
 
 /**
  * Executes a block in a background queue. Locks the interactor thread.
@@ -55,6 +51,12 @@
  * @discussion When using this method, do not use neither `-begin:` nor `-end:` or `-end` methods.
  **/
 - (void)perform:(void (^)())block;
+
+/**
+ * Creates a future to be used, and does the thread management.
+ * @discussion When using this method, do not use neither `-begin:` nor `-end:` or `-end` methods.
+ **/
+- (MJFuture*)performWithFuture:(void (^)(MJFuture *future))block;
 
 /**
  * YES if executing, NO otherwise. This property is KVO compliant.

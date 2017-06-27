@@ -47,7 +47,7 @@ static NSMutableDictionary *_interactorDispatchQueues;
         _refresh = NO;
         
         NSString *className = NSStringFromClass(self.class);
-        NSString *queueName = [NSString stringWithFormat:@"com.mobilejazz.core.interacor.%@", className];
+        NSString *queueName = [NSString stringWithFormat:@"com.mobilejazz.core.interactor.%@", className];
         
         @synchronized(_interactorDispatchQueues)
         {
@@ -60,8 +60,6 @@ static NSMutableDictionary *_interactorDispatchQueues;
             
             _queue = queue;
         }
-        
-        _executor = [[MJFutureExecutor alloc] initWithQueue:_queue];
     }
     return self;
 }
@@ -81,18 +79,9 @@ static NSMutableDictionary *_interactorDispatchQueues;
     }
     
     _queue = queue;
-    _executor = [[MJFutureExecutor alloc] initWithQueue:_queue];
 }
 
 #pragma mark Public Methods
-
-- (void)perform:(void (^)())block
-{
-    [self begin:^{
-        block();
-        [self end];
-    }];
-}
 
 - (void)begin:(void (^)())block
 {
@@ -154,7 +143,46 @@ static NSMutableDictionary *_interactorDispatchQueues;
 
 - (BOOL)isExecuting
 {
-    return _isExecuting || _executor.isExecuting;
+    return _isExecuting;
+}
+
+- (void)perform:(void (^)())block
+{
+    [self begin:^{
+        block();
+        [self end];
+    }];
+}
+
+- (MJFuture*)performWithFuture:(void (^)(MJFuture *future))block
+{
+    MJFuture *future = [MJFuture emptyFuture];
+    
+    [future addObserver:self];
+    
+    [self begin:^{
+        block(future);
+    }];
+    
+    return future;
+}
+
+#pragma mark - Protocols
+#pragma mark MJFutureObserver
+
+- (void)future:(MJFuture *)future didSetValue:(id)value
+{
+    [self end];
+}
+
+- (void)future:(MJFuture *)future didSetError:(NSError *)error
+{
+    [self end];
+}
+
+- (void)wontHappenFuture:(MJFuture *)future
+{
+    [self end];
 }
 
 @end
