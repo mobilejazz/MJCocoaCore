@@ -25,7 +25,7 @@
 		D22F7B1C1CEDD1590017B9BF /* MJDRealmObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B071CEDD1590017B9BF /* MJDRealmObject.m */; };
 		D22F7B1D1CEDD1590017B9BF /* MJAppLinkRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B091CEDD1590017B9BF /* MJAppLinkRecognizer.m */; };
 		D22F7B1F1CEDD1590017B9BF /* MJSecureKey.m in Sources */ = {isa = PBXBuildFile; fileRef = D22F7B0E1CEDD1590017B9BF /* MJSecureKey.m */; };
-		D25100151F026D31000D9C1D /* MJFutureBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D25100141F026D31000D9C1D /* MJFutureBatch.m */; };
+		D25100181F02738A000D9C1D /* MJFutureBatch.m in Sources */ = {isa = PBXBuildFile; fileRef = D25100171F02738A000D9C1D /* MJFutureBatch.m */; };
 		D2BDDEE61E3A4BD8001672F2 /* MJFutureTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BDDEE51E3A4BD8001672F2 /* MJFutureTests.m */; };
 		D2D65DEC1E16884600C5AA98 /* MJDRealmCacheService.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D65DE91E16884600C5AA98 /* MJDRealmCacheService.m */; };
 		D2D65DED1E16884600C5AA98 /* MJDRealmFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D65DEB1E16884600C5AA98 /* MJDRealmFactory.m */; };
@@ -90,8 +90,8 @@
 		D22F7B0A1CEDD1590017B9BF /* MJCocoaCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJCocoaCore.h; sourceTree = "<group>"; };
 		D22F7B0D1CEDD1590017B9BF /* MJSecureKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJSecureKey.h; sourceTree = "<group>"; };
 		D22F7B0E1CEDD1590017B9BF /* MJSecureKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJSecureKey.m; sourceTree = "<group>"; };
-		D25100131F026D31000D9C1D /* MJFutureBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJFutureBatch.h; path = "../../../../Projects/Nifti/nifti-ios/nifti/Helpers/MJFutureBatch.h"; sourceTree = "<group>"; };
-		D25100141F026D31000D9C1D /* MJFutureBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJFutureBatch.m; path = "../../../../Projects/Nifti/nifti-ios/nifti/Helpers/MJFutureBatch.m"; sourceTree = "<group>"; };
+		D25100161F02738A000D9C1D /* MJFutureBatch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFutureBatch.h; sourceTree = "<group>"; };
+		D25100171F02738A000D9C1D /* MJFutureBatch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFutureBatch.m; sourceTree = "<group>"; };
 		D2BDDEE51E3A4BD8001672F2 /* MJFutureTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFutureTests.m; sourceTree = "<group>"; };
 		D2D65DE81E16884600C5AA98 /* MJDRealmCacheService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDRealmCacheService.h; sourceTree = "<group>"; };
 		D2D65DE91E16884600C5AA98 /* MJDRealmCacheService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJDRealmCacheService.m; sourceTree = "<group>"; };
@@ -248,8 +248,8 @@
 				D22F7B011CEDD1590017B9BF /* MJInteractor.m */,
 				D2FF97571E38ED5D002B19A9 /* MJFuture.h */,
 				D2FF97581E38ED5D002B19A9 /* MJFuture.m */,
-				D25100131F026D31000D9C1D /* MJFutureBatch.h */,
-				D25100141F026D31000D9C1D /* MJFutureBatch.m */,
+				D25100161F02738A000D9C1D /* MJFutureBatch.h */,
+				D25100171F02738A000D9C1D /* MJFutureBatch.m */,
 				D22F7B041CEDD1590017B9BF /* Realm */,
 				BD0FBF2E38FBA2AE678A2D6C /* MJErrorCodes.m */,
 				BD0FB75175DF2456D25A1DBF /* MJErrorCodes.h */,
@@ -456,8 +456,8 @@
 				D22F7B181CEDD1590017B9BF /* MJDataProviderDirector.m in Sources */,
 				D2D65DED1E16884600C5AA98 /* MJDRealmFactory.m in Sources */,
 				D2D65DEC1E16884600C5AA98 /* MJDRealmCacheService.m in Sources */,
+				D25100181F02738A000D9C1D /* MJFutureBatch.m in Sources */,
 				D22F7B191CEDD1590017B9BF /* MJDEntity.m in Sources */,
-				D25100151F026D31000D9C1D /* MJFutureBatch.m in Sources */,
 				D22F7A4F1CEDC6330017B9BF /* main.m in Sources */,
 				D22F7B1A1CEDD1590017B9BF /* MJInteractor.m in Sources */,
 				D22F7B171CEDD1590017B9BF /* NSString+Additions.m in Sources */,
