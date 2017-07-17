@@ -23,11 +23,21 @@
 
 /**
  * Default initializer.
- * @param name The name of the realm database file. Cannot be nil nor empty.
+ * @param nameOrURLPath The name of the realm database file or a FileURL string pointing to the file location. Cannot be nil nor empty.
  * @param encryptionKeyName The name of the encryption key. Pass nil if no encryption is required.
  * @return The initialized instance.
+ * @disussion If name, then the file will be located in the Documents directory.
  **/
-- (instancetype)initWithName:(NSString*)name encryptionKeyName:(NSString *)encryptionKeyName;
+- (instancetype)initWithName:(NSString*)nameOrURLPath encryptionKeyName:(NSString *)encryptionKeyName;
+
+/**
+ * Default initializer.
+ * @param nameOrURLPath The name of the realm database file. Cannot be nil nor empty.
+ * @param encryptionKeyName The name of the encryption key. Pass nil if no encryption is required.
+ * @param inMemory YES if the database is stored in memory, NO if in the file system.
+ * @disussion If name and inMemory == NO, then the file will be located in the Documents directory.
+ **/
+- (instancetype)initWithName:(NSString*)nameOrURLPath encryptionKeyName:(NSString *)encryptionKeyName inMemory:(BOOL)inMemory;
 
 /**
  * @property The database name.

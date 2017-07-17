@@ -24,16 +24,21 @@
     BOOL _isValidated;
 }
 
-- (instancetype)initWithName:(NSString *)name encryptionKeyName:(NSString *)encryptionKeyName
+- (instancetype)initWithName:(NSString *)nameOrURLPath encryptionKeyName:(NSString *)encryptionKeyName
 {
-    if (name == nil)
+    return [self initWithName:nameOrURLPath encryptionKeyName:encryptionKeyName inMemory:NO];
+}
+
+- (instancetype)initWithName:(NSString*)nameOrURLPath encryptionKeyName:(NSString *)encryptionKeyName inMemory:(BOOL)inMemory
+{
+    if (nameOrURLPath == nil)
     {
         @throw [NSException exceptionWithName:NSInvalidArgumentException
                                        reason:@"<name> cannot be nil."
                                      userInfo:nil];
     }
     
-    if (name.length == 0)
+    if (nameOrURLPath.length == 0)
     {
         @throw [NSException exceptionWithName:NSInvalidArgumentException
                                        reason:@"<name> cannot be an empty string."
@@ -43,13 +48,29 @@
     self = [super init];
     if (self)
     {
-        _name = name;
+        _name = nameOrURLPath;
         _encryptionKeyName = encryptionKeyName;
         
         _minimumValidMigrationSchemaVersion = RLMNotVersioned;
         
         _configuration = [[RLMRealmConfiguration alloc] init];
-        _configuration.fileURL = [NSURL fileURLWithPath:[self mjz_pathForRealmWithName:_name]];
+        
+        if (inMemory)
+        {
+            _configuration.inMemoryIdentifier = _name;
+        }
+        else
+        {
+            NSURL *url = [NSURL URLWithString:_name];
+            
+            if (!url || url.isFileURL == NO)
+            {
+                url = [NSURL fileURLWithPath:[self mjz_pathForRealmWithName:_name]];
+            }
+            
+            _configuration.fileURL = url;
+        }
+        
         _configuration.encryptionKey = [self mjz_realmEncryptionKeyForName:_encryptionKeyName];
         
         _isValidated = NO;

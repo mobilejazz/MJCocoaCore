@@ -11,14 +11,7 @@
 
 NSString* MJDRealmObjectIdentifier(NSString *className)
 {
-    NSMutableString *string = [NSMutableString string];
-    
-    if (className.length > 0)
-        [string appendFormat:@"%@::", className];
-    
-    [string appendString:[NSString add_uniqueString]];
-    
-    return [string copy];
+    return [[NSUUID UUID] UUIDString];
 }
 
 @interface MJDRealmObject ()
