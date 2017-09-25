@@ -24,31 +24,34 @@
     BOOL _isValidated;
 }
 
-- (instancetype)initWithName:(NSString *)nameOrURLPath encryptionKeyName:(NSString *)encryptionKeyName
+- (instancetype)initWithName:(id)nameOrURLPathOrFileURL encryptionKeyName:(NSString *)encryptionKeyName
 {
-    return [self initWithName:nameOrURLPath encryptionKeyName:encryptionKeyName inMemory:NO];
+    return [self initWithName:nameOrURLPathOrFileURL encryptionKeyName:encryptionKeyName inMemory:NO];
 }
 
-- (instancetype)initWithName:(NSString*)nameOrURLPath encryptionKeyName:(NSString *)encryptionKeyName inMemory:(BOOL)inMemory
+- (instancetype)initWithName:(id)nameOrURLPathOrFileURL encryptionKeyName:(NSString *)encryptionKeyName inMemory:(BOOL)inMemory
 {
-    if (nameOrURLPath == nil)
+    if (nameOrURLPathOrFileURL == nil)
     {
         @throw [NSException exceptionWithName:NSInvalidArgumentException
                                        reason:@"<name> cannot be nil."
                                      userInfo:nil];
     }
     
-    if (nameOrURLPath.length == 0)
+    if ([nameOrURLPathOrFileURL isKindOfClass:NSString.class])
     {
-        @throw [NSException exceptionWithName:NSInvalidArgumentException
-                                       reason:@"<name> cannot be an empty string."
-                                     userInfo:nil];
+        if ([nameOrURLPathOrFileURL length] == 0)
+        {
+            @throw [NSException exceptionWithName:NSInvalidArgumentException
+                                           reason:@"<name> cannot be an empty string."
+                                         userInfo:nil];
+        }
     }
     
     self = [super init];
     if (self)
     {
-        _name = nameOrURLPath;
+        _name = nameOrURLPathOrFileURL;
         _encryptionKeyName = encryptionKeyName;
         
         _minimumValidMigrationSchemaVersion = RLMNotVersioned;
@@ -61,11 +64,34 @@
         }
         else
         {
-            NSURL *url = [NSURL URLWithString:_name];
+            NSURL *url = nil;
             
-            if (!url || url.isFileURL == NO)
+            if ([nameOrURLPathOrFileURL isKindOfClass:NSURL.class])
             {
-                url = [NSURL fileURLWithPath:[self mjz_pathForRealmWithName:_name]];
+                if ([nameOrURLPathOrFileURL isFileURL])
+                {
+                    url = nameOrURLPathOrFileURL;
+                }
+                else
+                {
+                    url = [NSURL fileURLWithPath:[nameOrURLPathOrFileURL path]];
+                }
+            }
+            else
+            {
+                url = [NSURL URLWithString:nameOrURLPathOrFileURL];
+                
+                if (!url)
+                {
+                    url = [NSURL fileURLWithPath:[self mjz_pathForRealmWithName:_name]];
+                }
+                else
+                {
+                    if (!url.isFileURL)
+                    {
+                        url = [NSURL fileURLWithPath:nameOrURLPathOrFileURL];
+                    }
+                }
             }
             
             _configuration.fileURL = url;
@@ -173,7 +199,7 @@
 
 - (void)mjz_validateRealm
 {
-    NSString *realmPath = [self mjz_pathForRealmWithName:_name];
+    NSString *realmPath = [_configuration.fileURL path];
     NSLog(@"RealmPath: %@", realmPath);
     
     if (_minimumValidMigrationSchemaVersion != RLMNotVersioned)
@@ -192,7 +218,6 @@
         }
     }
 }
-
 
 - (NSData*)mjz_realmEncryptionKeyForName:(NSString*)name
 {

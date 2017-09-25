@@ -33,13 +33,13 @@
  * Executes a block in a background queue. Locks the interactor thread.
  * @discussion A `begin` call must be in corresponded to a `end` call.
  **/
-- (void)begin:(void (^)())block;
+- (void)begin:(void (^)(void))block;
 
 /**
  * Executes a block in the main queue. Unlocks the interactor thread.
  * @discussion A `begin` call must be in corresponded to a `end` call.
  **/
-- (void)end:(void (^)())block;
+- (void)end:(void (^)(void))block;
 
 /**
  * Unlock the interactor thread. This is equal to calling end with a nil block parameter.
@@ -50,7 +50,7 @@
  * Locks the interactor thread, executes the block in a background queue and then unlocks the interactor thread.
  * @discussion When using this method, do not use neither `-begin:` nor `-end:` or `-end` methods.
  **/
-- (void)perform:(void (^)())block;
+- (void)perform:(void (^)(void))block;
 
 /**
  * Creates a future to be used, and does the thread management.
