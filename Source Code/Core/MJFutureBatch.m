@@ -117,7 +117,7 @@
     
     if (_completionBlock && _counter == 0)
     {
-        _completionBlock(_errorResult.error, _errorResult.error);
+        _completionBlock(_errorResult.error, _errorResult.context);
         _errorResult = nil;
     }
 }
