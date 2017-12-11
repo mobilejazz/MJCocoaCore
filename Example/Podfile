@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MJCocoaCore_Example' do
+  pod 'MJCocoaCore', :path => '../'
+
+  target 'MJCocoaCore_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
