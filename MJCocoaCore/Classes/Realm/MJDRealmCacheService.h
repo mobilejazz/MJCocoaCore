@@ -18,6 +18,8 @@
 
 #import "MJDRealmFactory.h"
 
+extern NSString *const MJDRealmCacheServiceDidCloseTransactionNotification;
+
 /**
  * Realm cache service.
  **/

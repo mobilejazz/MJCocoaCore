@@ -17,6 +17,8 @@
 #import "MJDRealmCacheService.h"
 #import "MJErrorCodes.h"
 
+NSString *const MJDRealmCacheServiceDidCloseTransactionNotification = @"MJDRealmCacheServiceDidCloseTransactionNotification";
+
 @interface MJDRealmCacheService ()
 
 @property (nonatomic, strong, readwrite) MJDRealmFactory *realmFactory;
@@ -62,6 +64,8 @@
         {
             [realm commitWriteTransaction];
             [realm refresh];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:MJDRealmCacheServiceDidCloseTransactionNotification object:nil userInfo:nil];
         }
     }
     @catch (NSException *exception)
