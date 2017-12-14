@@ -22,7 +22,6 @@ typedef NS_ENUM(NSInteger, MJFutureState)
 	MJFutureStateWaitingBlock,
 	MJFutureStateWaitingValueOrError,
 	MJFutureStateSent,
-	MJFutureStateWontHappen
 };
 
 extern NSString * _Nonnull const MJFutureValueNotAvailableException;
@@ -56,6 +55,14 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  */
 + (MJFuture <T>* _Nonnull)immediateFuture:(_Nonnull T)value;
 
+/**
+ Creates a future from another future
+
+ @param future The future to set to the future
+ @return A future
+ */
++ (MJFuture <T>* _Nonnull)futureWithFuture:(MJFuture<T>* _Nonnull )future;
+
 #pragma mark - Future lifecyle
 
 /** ************************************ **
@@ -73,7 +80,7 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  
  @param queue The default return queue
  **/
-+ (void)setDefaultReturnQueue:(dispatch_queue_t _Nonnull)queue;
++ (void)setDefaultReturnQueue:(dispatch_queue_t _Nonnull)queue DEPRECATED_MSG_ATTRIBUTE("Use -inQueue: or -inMainQueue instead.");
 
 /**
  The state of the future.
@@ -109,9 +116,9 @@ extern NSString * _Nonnull const MJFutureErrorKey;
 - (void)setValue:(_Nullable T)value error:(NSError * _Nullable)error;
 
 /**
- Cancels the future execution. This will block any future execution
- */
-- (void)wontHappen;
+ * Block called upon value is set.
+ **/
+@property (nonatomic, strong) void (^ _Nullable onSetBlock)(_Nullable T __strong * _Nonnull, NSError * _Nullable __strong * _Nonnull );
 
 #pragma mark - Future execution
 
@@ -120,19 +127,21 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  ** ************************************ **/
 
 /**
+ * Returns the future in the given queue
+ **/
+- (MJFuture<T>* _Nonnull)inQueue:(dispatch_queue_t _Nonnull)queue;
+
+/**
+ * Returns the future in the main queue
+ **/
+- (MJFuture<T>* _Nonnull)inMainQueue;
+
+/**
  Completion block executed when the future has value.
  
  @param block The block to be executed, with the object or the error passed as parameter
  */
 - (void)then:(void (^ _Nullable )(_Nullable T object, NSError *_Nullable error))block;
-
-/**
- Completion block executed when the future has value.
-
- @param block The block to be executed, with the object or the error passed as parameter
- @param queue The queue on which the block will be caled
- */
-- (void)then:(void (^_Nullable)(_Nullable T object, NSError *_Nullable error))block inQueue:(_Nullable dispatch_queue_t)queue;
 
 /** ************************************ **
  @name Synchronous Future Management
@@ -181,7 +190,17 @@ extern NSString * _Nonnull const MJFutureErrorKey;
 
 - (void)future:(MJFuture *_Nonnull)future didSetValue:(_Nonnull id)value;
 - (void)future:(MJFuture *_Nonnull)future didSetError:(NSError *_Nonnull)error;
-- (void)wontHappenFuture:(MJFuture *_Nonnull)future;
 - (void)didSendFuture:(MJFuture *_Nonnull)future;
+
+@end
+
+
+@interface MJFuture<T> (Functional)
+
+- (MJFuture* _Nonnull)map:(id _Nonnull (^_Nonnull)(T _Nonnull value))block;
+- (MJFuture *_Nonnull)mapError:(NSError*  _Nonnull (^_Nonnull)(NSError* _Nonnull))block;
+- (MJFuture *_Nonnull)flatMap:(MJFuture* _Nonnull (^_Nonnull)(id _Nonnull))block;
+- (MJFuture *_Nonnull)recover:(MJFuture*  _Nonnull (^_Nonnull)(NSError*_Nonnull))block;
+- (MJFuture *_Nonnull)filter:(NSError*  _Nonnull (^_Nonnull)(id _Nonnull))block;
 
 @end

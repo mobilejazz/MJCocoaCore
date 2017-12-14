@@ -29,7 +29,7 @@ NSString *const MJFutureErrorKey = @"MJFutureErrorKey";
 
 @end
 
-static dispatch_queue_t _defaultReturnQueue;
+static dispatch_queue_t _defaultReturnQueue = nil;
 
 @implementation MJFuture
 {
@@ -37,8 +37,7 @@ static dispatch_queue_t _defaultReturnQueue;
     id _error;
     BOOL _isValueNil;
 
-    dispatch_queue_t _customQueue;
-
+    dispatch_queue_t _queue;
     dispatch_semaphore_t _semaphore;
 
     NSHashTable <id <MJFutureObserver>> *_observers;
@@ -55,6 +54,13 @@ static dispatch_queue_t _defaultReturnQueue;
     MJFuture *future = [[MJFuture alloc] init];
     [future setValue:value];
     return future;
+}
+
++ (MJFuture* _Nonnull)futureWithFuture:(MJFuture *_Nonnull )future
+{
+    MJFuture *newFuture = [[MJFuture alloc] init];
+    [newFuture setFuture:future];
+    return newFuture;
 }
 
 - (instancetype)init
@@ -75,7 +81,7 @@ static dispatch_queue_t _defaultReturnQueue;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _defaultReturnQueue = dispatch_get_main_queue();
+        _defaultReturnQueue = nil;
     });
 }
 
@@ -150,24 +156,30 @@ static dispatch_queue_t _defaultReturnQueue;
     }
 }
 
-- (void)wontHappen
+- (void)setFuture:(MJFuture *)future
 {
-    _state = MJFutureStateWontHappen;
-
-    [_observers.allObjects enumerateObjectsUsingBlock:^(id <MJFutureObserver> _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
-        if ([obj respondsToSelector:@selector(wontHappenFuture:)])
-        {
-            [obj wontHappenFuture:self];
-        }
+    [future then:^(id  _Nullable object, NSError * _Nullable error) {
+        [self setValue:object error:error];
     }];
 }
 
-- (void)then:(void (^)(id, NSError *))block
+- (void)setOnSetBlock:(void (^)(__strong id  _Nullable * _Nonnull, NSError *__strong  _Nullable * _Nonnull))onSetBlock
 {
-    [self then:block inQueue:nil];
+    _onSetBlock = onSetBlock;
 }
 
-- (void)then:(void (^)(id, NSError *))block inQueue:(dispatch_queue_t)queue
+- (MJFuture*)inQueue:(dispatch_queue_t)queue
+{
+    _returnQueue = queue;
+    return self;
+}
+
+- (MJFuture*)inMainQueue
+{
+    return [self inQueue:dispatch_get_main_queue()];
+}
+
+- (void)then:(void (^)(id, NSError *))block
 {
     @synchronized (self)
     {
@@ -177,8 +189,7 @@ static dispatch_queue_t _defaultReturnQueue;
         }
 
         self.thenBlock = block;
-        _customQueue = queue;
-
+        
         [self mjz_update];
     }
 }
@@ -214,7 +225,7 @@ static dispatch_queue_t _defaultReturnQueue;
     else
     {
         NSException *exception = [NSException exceptionWithName:NSInternalInconsistencyException
-                                                         reason:@"Misusage of futre"
+                                                         reason:@"Misusage of future"
                                                        userInfo:nil];
         @throw exception;
     }
@@ -243,13 +254,6 @@ static dispatch_queue_t _defaultReturnQueue;
             }
         }
     }
-    else if (_state == MJFutureStateWontHappen)
-    {
-        if ([observer respondsToSelector:@selector(wontHappenFuture:)])
-        {
-            [observer wontHappenFuture:self];
-        }
-    }
 }
 
 - (void)removeObserver:(id <MJFutureObserver>)observer
@@ -272,6 +276,10 @@ static dispatch_queue_t _defaultReturnQueue;
         if (_value || _error)
         {
             _state = MJFutureStateWaitingBlock;
+            
+            if (_onSetBlock) {
+                _onSetBlock(&_value, &_error);
+            }
 
             if (_semaphore != nil)
             {
@@ -307,23 +315,21 @@ static dispatch_queue_t _defaultReturnQueue;
     id value = _value;
     id error = _error;
 
-    if (_customQueue)
+    if (_queue)
     {
-        dispatch_async(_customQueue, ^{
+        dispatch_async(_queue, ^{
             thenBlock(value, error);
         });
     }
-    else if (_returnQueue)
+    else if (_defaultReturnQueue)
     {
-        dispatch_async(_returnQueue, ^{
+        dispatch_async(_defaultReturnQueue, ^{
             thenBlock(value, error);
         });
     }
     else
     {
-        dispatch_async(_defaultReturnQueue, ^{
-            thenBlock(value, error);
-        });
+        thenBlock(value, error);
     }
 
     [_observers.allObjects enumerateObjectsUsingBlock:^(id <MJFutureObserver> _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
@@ -336,7 +342,87 @@ static dispatch_queue_t _defaultReturnQueue;
     self.thenBlock = nil;
     _value = nil;
     _error = nil;
-    _customQueue = nil;
+}
+
+@end
+
+@implementation MJFuture (Functional)
+
+- (MJFuture *)map:(id  _Nonnull (^)(id _Nonnull))block
+{
+    MJFuture *future = [MJFuture emptyFuture];
+    [self then:^(id  _Nullable object, NSError * _Nullable error) {
+        if (object)
+        {
+            object = block(object);
+        }
+        [future setValue:object error:error];
+    }];
+    return future;
+}
+
+- (MJFuture *)mapError:(NSError*  _Nonnull (^)(NSError* _Nonnull))block
+{
+    MJFuture *future = [MJFuture emptyFuture];
+    [self then:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error)
+        {
+            error = block(error);
+        }
+        [future setValue:object error:error];
+    }];
+    return future;
+}
+
+- (MJFuture *)flatMap:(MJFuture* _Nonnull (^)(id _Nonnull))block
+{
+    MJFuture *future = [MJFuture emptyFuture];
+    [self then:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error)
+        {
+            [future setError:error];
+        }
+        else
+        {
+            if (object)
+                [future setFuture:block(object)];
+            else
+                [future setValue:nil];
+        }
+    }];
+    return future;
+}
+
+- (MJFuture *)recover:(MJFuture*  _Nonnull (^)(NSError*_Nonnull))block
+{
+    MJFuture *future = [MJFuture emptyFuture];
+    [self then:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error)
+            [future setFuture:block(error)];
+        else
+            [future setValue:object];
+    }];
+    return future;
+}
+
+- (MJFuture *)filter:(NSError*  _Nonnull (^)(id _Nonnull))block
+{
+    MJFuture *future = [MJFuture emptyFuture];
+    [self then:^(id  _Nullable object, NSError * _Nullable error) {
+        if (error)
+        {
+            [future setError:error];
+        }
+        else
+        {
+            NSError *error = block(object);
+            if (error)
+                [future setError:error];
+            else
+                [future setValue:object];
+        }
+    }];
+    return future;
 }
 
 @end
