@@ -196,23 +196,35 @@ static dispatch_queue_t _defaultReturnQueue = nil;
 
 - (_Nullable id)value
 {
+    NSError *error = nil;
+    id value = [self valueWithError:&error];
+    
+    if (error)
+    {
+        NSException *exception = [NSException exceptionWithName:MJFutureValueNotAvailableException
+                                                         reason:@"Value is not available."
+                                                       userInfo:@{MJFutureErrorKey: error}];
+        @throw exception;
+    }
+    else
+    {
+        return value;
+    }
+}
+
+- (_Nullable id)valueWithError:(NSError * _Nullable __strong * _Nullable)error
+{
     if (_state == MJFutureStateWaitingBlock)
     {
-        if (_value)
+        if (_error)
+        {
+            if (error)
+                *error = _error;
+        }
+        else // if (_value || _isValueNil)
         {
             _state = MJFutureStateSent;
             return _value;
-        }
-        else if (_error)
-        {
-            NSException *exception = [NSException exceptionWithName:MJFutureValueNotAvailableException
-                                                             reason:@"Value is not available."
-                                                           userInfo:@{MJFutureErrorKey: _error}];
-            @throw exception;
-        }
-        else
-        {
-            NSAssert(NO, @"Invalid future state");
         }
     }
     else if (_state == MJFutureStateBlank)

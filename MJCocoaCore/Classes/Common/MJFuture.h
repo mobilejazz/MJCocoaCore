@@ -151,14 +151,17 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  Blocks the current thread until the value is obtained or return the value direclty if it is already availble.
  
  @return The future value.
- @discussion If error, this method returns nil and throws an exception (unless the property `throwsExceptionIfError` is set to NO).
+ @discussion If error, this method returns nil and throws an exception;
  */
 - (_Nullable T)value;
 
 /**
- * If YES, the method `value` will throw an exception if the future ends with an error. Default falue is YES.
- **/
-@property (nonatomic, assign) BOOL throwsExceptionIfError;
+ Blocks the current thread until the value is obtained or return the value direclty if it is already availble.
+ 
+ @param error The out error
+ @return The future value.
+ */
+- (_Nullable T)valueWithError:(NSError * _Nullable __strong * _Nullable)error;
 
 #pragma mark - Observer management
 
@@ -198,9 +201,9 @@ extern NSString * _Nonnull const MJFutureErrorKey;
 @interface MJFuture<T> (Functional)
 
 - (MJFuture* _Nonnull)map:(id _Nonnull (^_Nonnull)(T _Nonnull value))block;
-- (MJFuture *_Nonnull)mapError:(NSError*  _Nonnull (^_Nonnull)(NSError* _Nonnull))block;
-- (MJFuture *_Nonnull)flatMap:(MJFuture* _Nonnull (^_Nonnull)(id _Nonnull))block;
-- (MJFuture *_Nonnull)recover:(MJFuture*  _Nonnull (^_Nonnull)(NSError*_Nonnull))block;
-- (MJFuture *_Nonnull)filter:(NSError*  _Nonnull (^_Nonnull)(id _Nonnull))block;
+- (MJFuture *_Nonnull)mapError:(NSError*  _Nonnull (^_Nonnull)(NSError* _Nonnull error))block;
+- (MJFuture *_Nonnull)flatMap:(MJFuture* _Nonnull (^_Nonnull)(id _Nonnull value))block;
+- (MJFuture *_Nonnull)recover:(MJFuture*  _Nonnull (^_Nonnull)(NSError*_Nonnull error))block;
+- (MJFuture *_Nonnull)filter:(NSError*  _Nonnull (^_Nonnull)(id _Nonnull value))block;
 
 @end
