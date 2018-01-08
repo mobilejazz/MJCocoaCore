@@ -8,11 +8,12 @@
 
 #import "MJAppDelegate.h"
 
+@import MJCocoaCore;
+
 @implementation MJAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
     return YES;
 }
 
