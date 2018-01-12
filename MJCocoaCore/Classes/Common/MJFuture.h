@@ -83,7 +83,7 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  @param reactive YES for a reactive future, NO otherwise
  @return The initialized instance
  **/
-- (instancetype)initReactive:(BOOL)reactive;
+- (_Nonnull instancetype)initReactive:(BOOL)reactive;
 
 #pragma mark - Future lifecyle
 
