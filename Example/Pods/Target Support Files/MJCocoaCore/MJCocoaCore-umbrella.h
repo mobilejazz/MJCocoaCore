@@ -21,6 +21,7 @@
 #import "MJModelObject.h"
 #import "MJSecureKey.h"
 #import "NSString+Additions.h"
+#import "MJCocoaCoreFuture.h"
 #import "MJFuture.h"
 #import "MJFutureBatch.h"
 #import "MJCocoaCoreRealm.h"
