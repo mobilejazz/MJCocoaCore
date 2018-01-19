@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 Common set of reusable classes, categories and definitions for Cocoa.
                        DESC
 
-  s.homepage         = 'https://bitbucket.org/mobilejazz/mjcocoacore'
+  s.homepage         = 'https://github.com/mobilejazz/MJCocoaCore'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
   s.author           = { 'Mobile Jazz' => 'info@mobilejazz.com' }
-  s.source           = { :git => 'https://bitbucket.org/mobilejazz/mjcocoacore.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/mobilejazz/MJCocoaCore.git', :tag => s.version.to_s }
   # s.social_media_url = 'http://twitter.com/mobilejazzcom'
 
   s.ios.deployment_target = '7.0'
