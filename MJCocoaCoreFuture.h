@@ -1,5 +1,5 @@
 //
-// Copyright 2017 Mobile Jazz SL
+// Copyright 2018 Mobile Jazz SL
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,12 +14,10 @@
 // limitations under the License.
 //
 
-#ifndef MJCocoaCoreRealm_h
-#define MJCocoaCoreRealm_h
+#ifndef MJCocoaCoreFuture_h
+#define MJCocoaCoreFuture_h
 
-#import "MJDRealmCacheService.h"
-#import "MJDRealmFactory.h"
-#import "MJDRealmMapper.h"
-#import "MJDRealmObject.h"
+#import "MJFuture.h"
+#import "MJFutureBatch.h"
 
-#endif /* MJCocoaCoreRealm_h */
+#endif /* MJCocoaCoreFuture_h */

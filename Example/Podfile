@@ -1,7 +1,9 @@
 use_frameworks!
+platform :ios, '9.3'
 
 target 'MJCocoaCore_Example' do
   pod 'MJCocoaCore', :path => '../'
+  pod 'MJCocoaCore/Realm', :path => '../'
 
   target 'MJCocoaCore_Tests' do
     inherit! :search_paths

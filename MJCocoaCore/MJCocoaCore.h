@@ -14,5 +14,11 @@
 // limitations under the License.
 //
 
+#ifndef MJCocoaCore_h
+#define MJCocoaCore_h
+
+#import "MJCocoaCoreFuture.h"
 #import "MJCocoaCoreCommon.h"
 #import "MJCocoaCoreRealm.h"
+
+#endif /* MJCocoaCore_h */

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MJCocoaCore'
-  s.version          = '2.1.1'
+  s.version          = '2.2.0'
   s.summary          = 'Mobile Jazz Cocoa Core'
 
 # This description is used to generate tags and improve search results.
@@ -32,10 +32,17 @@ Common set of reusable classes, categories and definitions for Cocoa.
   s.osx.deployment_target = '10.9'
   s.tvos.deployment_target = '9.0'
 
-  s.source_files = 'MJCocoaCore/Classes/**/*'
+  s.source_files = 'MJCocoaCore/MJCocoaCore.h'
+  
+  s.default_subspecs = 'Common'
+  
+  s.subspec 'Future' do |sp|
+      sp.source_files = 'MJCocoaCore/Classes/Future/**/*'
+  end
   
   s.subspec 'Common' do |sp|
       sp.source_files = 'MJCocoaCore/Classes/Common/**/*'
+      sp.dependency 'MJCocoaCore/Future'
   end
   
   s.subspec 'Realm' do |sp|
