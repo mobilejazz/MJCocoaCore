@@ -19,6 +19,5 @@
 
 #import "MJCocoaCoreFuture.h"
 #import "MJCocoaCoreCommon.h"
-#import "MJCocoaCoreRealm.h"
 
 #endif /* MJCocoaCore_h */
