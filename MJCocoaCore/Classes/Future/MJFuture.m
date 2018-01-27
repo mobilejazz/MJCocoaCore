@@ -109,6 +109,11 @@ static dispatch_queue_t _defaultReturnQueue = nil;
     _defaultReturnQueue = queue;
 }
 
+- (void)mimic:(MJFuture*)future
+{
+    _reactive = future.reactive;
+}
+
 - (void)setValue:(id)value
 {
     @synchronized (self)

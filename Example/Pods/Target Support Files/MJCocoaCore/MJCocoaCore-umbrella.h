@@ -24,6 +24,7 @@
 #import "MJCocoaCoreFuture.h"
 #import "MJFuture.h"
 #import "MJFutureBatch.h"
+#import "MJFutureHub.h"
 #import "MJCocoaCoreRealm.h"
 #import "MJDRealmCacheService.h"
 #import "MJDRealmFactory.h"

@@ -122,6 +122,13 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  ** ************************************ **/
 
 /**
+ Configures the receiver with the same reactiveness as the given future.
+ 
+ @param future The future to mimic its reactiveness.
+ */
+- (void)mimic:(MJFuture<T>* _Nonnull)future;
+
+/**
  Sets the value on the future. If the future is ready, the *then* block will be called
 
  @param value A not null value
