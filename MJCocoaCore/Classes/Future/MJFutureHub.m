@@ -15,6 +15,7 @@
 //
 
 #import "MJFutureHub.h"
+#import "MJFuture.h"
 
 @implementation MJFutureHub
 {
@@ -91,6 +92,13 @@
 {
     [_lock lock];
     [_strongFutures removeObjectIdenticalTo:future];
+    [_lock unlock];
+}
+
+- (void)unsubscribeAll
+{
+    [_lock lock];
+    [_strongFutures removeAllObjects];
     [_lock unlock];
 }
 

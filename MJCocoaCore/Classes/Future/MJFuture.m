@@ -15,6 +15,7 @@
 //
 
 #import "MJFuture.h"
+#import "MJFutureHub.h"
 
 NSString *const MJFutureValueNotAvailableException = @"MJFutureValueNotAvailableException";
 NSString *const MJFutureErrorKey = @"MJFutureErrorKey";
@@ -315,6 +316,15 @@ static dispatch_queue_t _defaultReturnQueue = nil;
 - (void)removeObserver:(id <MJFutureObserver>)observer
 {
     [_observers removeObject:observer];
+}
+
+- (MJFutureHub *)hub
+{
+    if (_hub)
+        return _hub;
+    
+    _hub = [MJFutureHub hubWithFuture:self];
+    return _hub;
 }
 
 #pragma mark Private Methods

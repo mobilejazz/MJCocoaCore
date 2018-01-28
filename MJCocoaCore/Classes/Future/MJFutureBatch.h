@@ -15,7 +15,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MJFuture.h"
+
+@class MJFuture<T>;
 
 /**
  * Batch management of futures.

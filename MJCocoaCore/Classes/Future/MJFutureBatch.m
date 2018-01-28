@@ -15,6 +15,7 @@
 //
 
 #import "MJFutureBatch.h"
+#import "MJFuture.h"
 
 @interface MJFutureResult : NSObject
 

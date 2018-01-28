@@ -16,6 +16,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class MJFutureHub<T>;
+
 typedef NS_ENUM(NSInteger, MJFutureState)
 {
 	MJFutureStateBlank,
@@ -222,6 +224,11 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  @param observer An observer
  **/
 - (void)removeObserver:(_Nonnull id <MJFutureObserver>)observer;
+
+/**
+ Returns a hub associated to the current future
+ */
+@property (nonatomic, strong, readwrite) MJFutureHub<T> * _Nonnull hub;
 
 @end
 

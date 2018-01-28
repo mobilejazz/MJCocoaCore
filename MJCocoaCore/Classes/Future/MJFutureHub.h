@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "MJFuture.h"
+@class MJFuture<T>;
 
 typedef NS_ENUM(NSUInteger, MJFutureMemoryReferenceType)
 {
@@ -79,5 +79,10 @@ typedef NS_ENUM(NSUInteger, MJFutureMemoryReferenceType)
  @param future The future to unsubscribe
  */
 - (void)unsubscribe:(MJFuture<T>* _Nonnull)future;
+
+/**
+ Unregisters all strong referended futures
+ */
+- (void)unsubscribeAll;
 
 @end
