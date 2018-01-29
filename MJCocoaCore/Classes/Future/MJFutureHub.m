@@ -66,15 +66,26 @@
 
 #pragma mark Public Methods
 
-- (MJFuture *)subscribe
+- (MJFuture *)plug
 {
-    return [self subscribeAs:MJFutureMemoryReferenceTypeWeak];
+    return [self plugAs:MJFutureMemoryReferenceTypeWeak];
 }
 
-- (MJFuture *)subscribeAs:(MJFutureMemoryReferenceType)type
+- (MJFuture *)plugAs:(MJFutureMemoryReferenceType)type
+{
+    MJFuture *future = [[MJFuture alloc] initReactive:_reactive];
+    [self plug:future as:type];
+    return future;
+}
+
+- (void)plug:(MJFuture *)future
+{
+    [self plug:future as:MJFutureMemoryReferenceTypeWeak];
+}
+
+- (void)plug:(MJFuture *)future as:(MJFutureMemoryReferenceType)type
 {
     [_lock lock];
-    MJFuture *future = [[MJFuture alloc] initReactive:_reactive];
     switch (type)
     {
         case MJFutureMemoryReferenceTypeStrong:
@@ -85,19 +96,20 @@
             break;
     }
     [_lock unlock];
-    return future;
 }
 
-- (void)unsubscribe:(MJFuture *)future
+- (void)unplug:(MJFuture *)future
 {
     [_lock lock];
+    [_weakFutures removeObject:future];
     [_strongFutures removeObjectIdenticalTo:future];
     [_lock unlock];
 }
 
-- (void)unsubscribeAll
+- (void)unplugAll
 {
     [_lock lock];
+    [_weakFutures removeAllObjects];
     [_strongFutures removeAllObjects];
     [_lock unlock];
 }

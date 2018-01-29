@@ -252,7 +252,7 @@ extern NSString * _Nonnull const MJFutureErrorKey;
 /**
   Mappes the value and return a new future with the value mapped.
  **/
-- (MJFuture* _Nonnull)map:(id _Nonnull (^_Nonnull)(T _Nonnull value))block;
+- (MJFuture * _Nonnull)map:(id _Nonnull (^_Nonnull)(T _Nonnull value))block;
 
 /**
   Mappes the error and return a new future with the error mapped.

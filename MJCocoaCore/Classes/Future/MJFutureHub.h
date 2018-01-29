@@ -59,30 +59,45 @@ typedef NS_ENUM(NSUInteger, MJFutureMemoryReferenceType)
 @property (nonatomic, strong, readwrite) MJFuture<T> * _Nullable future;
 
 /**
- Returns a new future with a weak memory reference.
+ Creates a new future and plugs it to the hub (with a weak memory reference).
  
  @return A new future
  */
-- (MJFuture<T>* _Nonnull)subscribe;
+- (MJFuture<T>* _Nonnull)plug;
 
 /**
- Returns a new future with a memory reference as specifyed.
+ Creates a new future and plugs it to the hub.
  
  @param type The memory reference type.
  @return A new future
  */
-- (MJFuture<T>* _Nonnull)subscribeAs:(MJFutureMemoryReferenceType)type;
+- (MJFuture<T>* _Nonnull)plugAs:(MJFutureMemoryReferenceType)type;
 
 /**
- Unsubscribe a strong memory referenced future.
+ Plugs (subscries) the given future (keepign a week memory reference).
  
- @param future The future to unsubscribe
+ @param future The future to plug.
  */
-- (void)unsubscribe:(MJFuture<T>* _Nonnull)future;
+- (void)plug:(MJFuture<T> * _Nonnull)future;
 
 /**
- Unregisters all strong referended futures
+ Plugs (subscries) the given future to the hub.
+ 
+ @param future The future to plug.
+ @param type The memory reference type
  */
-- (void)unsubscribeAll;
+- (void)plug:(MJFuture<T> * _Nonnull)future as:(MJFutureMemoryReferenceType)type;
+
+/**
+ Unplugs (unsubscribes) a future.
+ 
+ @param future The future to unplug
+ */
+- (void)unplug:(MJFuture<T>* _Nonnull)future;
+
+/**
+ Unplugs (unsubscribes) all futures.
+ */
+- (void)unplugAll;
 
 @end
