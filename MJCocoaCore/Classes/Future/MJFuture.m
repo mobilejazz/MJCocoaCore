@@ -416,6 +416,7 @@ static dispatch_queue_t _defaultReturnQueue = nil;
         self.thenBlock = nil;
         _value = nil;
         _error = nil;
+        _onSetBlock = nil;
     }
 }
 
