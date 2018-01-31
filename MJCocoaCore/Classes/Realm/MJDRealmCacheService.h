@@ -46,3 +46,23 @@ extern NSString *const MJDRealmCacheServiceDidCloseTransactionNotification;
 - (NSError*)write:(void (^)(RLMRealm *realm))block;
 
 @end
+
+#import "MJFuture.h"
+
+@interface MJDRealmCacheService (MJFuture)
+
+/**
+ * Read method returning future.
+ * @param block A block having as parameter the realm instance to perform the query and as a return type the result of the query.
+ * @return A future with the result of the query.
+ **/
+- (MJFuture*)ft_read:(id (^)(RLMRealm *realm))block;
+
+/**
+ * Write method returning future.
+ * @param block A block having as parameter the realm instance to perform the query and as a return type the result of writing operation.
+ * @return A future with the result of the write query.
+ **/
+- (MJFuture*)ft_write:(id (^)(RLMRealm *realm))block;
+
+@end

@@ -86,3 +86,28 @@ NSString *const MJDRealmCacheServiceDidCloseTransactionNotification = @"MJDRealm
 }
 
 @end
+
+@implementation MJDRealmCacheService (MJFuture)
+
+- (MJFuture*)ft_read:(id (^)(RLMRealm *realm))block
+{
+    MJFuture *future = [MJFuture emptyFuture];
+    [self read:^(RLMRealm *realm) {
+        id value = block(realm);
+        [future setValue:value];
+    }];
+    return future;
+}
+
+- (MJFuture*)ft_write:(id (^)(RLMRealm *realm))block
+{
+    MJFuture *future = [MJFuture emptyFuture];
+    __block id value = nil;
+    NSError *error = [self write:^(RLMRealm *realm) {
+        value = block(realm);
+    }];
+    [future setValue:value error:error];
+    return future;
+}
+
+@end
