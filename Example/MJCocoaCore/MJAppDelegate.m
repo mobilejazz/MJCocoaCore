@@ -14,6 +14,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    MJInteractor *interactor = [[MJInteractor alloc] init];
+    [interactor superclass];
+    
     return YES;
 }
 

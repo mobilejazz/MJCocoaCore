@@ -17,6 +17,7 @@
 #import "MJDEntity.h"
 #import "MJDEntityMapper.h"
 #import "MJErrorCodes.h"
+#import "MJExecutor.h"
 #import "MJInteractor.h"
 #import "MJModelObject.h"
 #import "MJSecureKey.h"
