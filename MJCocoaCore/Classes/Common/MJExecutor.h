@@ -23,7 +23,7 @@
 
 /**
  Default initializer
-
+ 
  @param queue The queue to be used
  @return The initialized instance
  */
@@ -36,7 +36,7 @@
 
 /**
  Submits a new block for execution
-
+ 
  @param block The block to be executed. Contains as a parameter another block to be called after the execution ends.
  */
 - (void)submit:(void (^_Nonnull)(void (^_Nonnull end)(void)))block;
@@ -52,11 +52,12 @@
 
 /**
  Customized submit method for MJFuture support
-
+ 
  @param block The block to be executed. Contains as a parameter a future to be filled.
  @return A future for the result of the execution.
- @discussion The returned future executes on main thread.
+ @discussion The returned future executes by default on the main thread.
  */
 - (MJFuture * _Nonnull)ft_submit:(void (^_Nonnull)(MJFuture * _Nonnull))block;
 
 @end
+

@@ -81,3 +81,4 @@
 @property (nonatomic, assign, readonly) BOOL refresh;
 
 @end
+

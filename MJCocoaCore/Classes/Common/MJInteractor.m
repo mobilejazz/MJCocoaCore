@@ -41,7 +41,7 @@ static NSMutableDictionary *_interactorDispatchQueues;
 }
 
 - (id)init
-{    
+{
     NSString *className = NSStringFromClass(self.class);
     NSString *queueName = [NSString stringWithFormat:@"com.mobilejazz.core.interactor.%@", className];
     
@@ -133,3 +133,4 @@ static NSMutableDictionary *_interactorDispatchQueues;
 }
 
 @end
+
