@@ -165,9 +165,10 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  ** ************************************ **/
 
 /**
- * Returns the future in the given queue
+ * Returns the future in the given queue. Default queue is nil.
+ * @discussion A nil queue will execute the then block in the same queue where the setValue/setError happens.
  **/
-- (MJFuture<T>* _Nonnull)inQueue:(dispatch_queue_t _Nonnull)queue;
+- (MJFuture<T>* _Nonnull)inQueue:(dispatch_queue_t _Nullable)queue;
 
 /**
  * Returns the future in the main queue

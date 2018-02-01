@@ -60,7 +60,22 @@
         [future setOnSetBlock:^(__strong id  _Nullable * _Nonnull value, NSError *__strong  _Nullable * _Nonnull error) {
             end();
         }];
-        block(future);
+        @try
+        {
+            block(future);
+        }
+        @catch (NSException *exception)
+        {
+            NSError *error = exception.userInfo[MJFutureErrorKey];
+            if (error)
+            {
+                [future setError:error];
+            }
+            else
+            {
+                @throw exception;
+            }
+        }
     }];
     // Returning in main que a new future, to avoid reseting the onSetBlock property.
     return [[MJFuture futureWithFuture:future] inMainQueue];
