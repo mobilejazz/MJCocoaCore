@@ -71,8 +71,8 @@ static NSMutableDictionary *_executors;
 - (void)begin:(void (^)(void))block
 {
     [_executor submit:^(void (^ _Nonnull end)(void)) {
-        block();
         _end = end;
+        block();
     }];
 }
 
