@@ -78,7 +78,7 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  @param future The future to set to the future
  @return A future
  */
-+ (MJFuture <T>* _Nonnull)futureWithFuture:(MJFuture<T>* _Nonnull )future;
++ (MJFuture <T>* _Nonnull)futureWithFuture:(MJFuture<T>* _Nonnull)future;
 
 /**
  Creates an empty future
@@ -155,8 +155,11 @@ extern NSString * _Nonnull const MJFutureErrorKey;
 
 /**
  * Block called upon value is set.
+ *
+ * @param block The block called.
+ * @discussion The block parameters are pointers to the value/error. These pointers can be changed in order to replace the setted value or error.
  **/
-@property (nonatomic, strong) void (^ _Nullable onSetBlock)(_Nullable T __strong * _Nonnull, NSError * _Nullable __strong * _Nonnull );
+- (void)onSet:(void (^_Nonnull)(_Nullable T __strong * _Nonnull, NSError * _Nullable __strong * _Nonnull ))block;
 
 #pragma mark - Future execution
 
@@ -180,10 +183,19 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  
  @param block The block to be executed, with the object or the error passed as parameter
  */
-- (void)then:(void (^ _Nullable )(_Nullable T object, NSError *_Nullable error))block;
+- (void)then:(void (^ _Nonnull)(_Nullable T value, NSError *_Nullable error))block;
 
 /**
- Completes the future (if not completed yet). Completed futures cannot be used anymore.
+ Optional interface for the -then: method.
+ 
+ @param success The success block
+ @param failure The failure block
+ @discussion If this method is called, you can't call the then method as it would redefine the then block.
+ **/
+- (void)success:(void (^ _Nullable)(_Nullable T value))success failure:( void (^ _Nullable)(NSError * _Nullable error))failure;
+
+/**
+ Completes the future (if not completed yet). Completed futures cannot be used anymore and no then block will be called afterwards.
  
  @discussion Futures might be completed to finish the expectation of a value and then block. When completed, all then blocks and values are released.
  **/
@@ -197,7 +209,7 @@ extern NSString * _Nonnull const MJFutureErrorKey;
  Blocks the current thread until the value is obtained or return the value direclty if it is already availble.
  
  @return The future value.
- @discussion If error, this method returns nil and throws an exception;
+ @discussion If error, this method returns nil and throws an exception, containing the error inside the userInfo for the key MJFutureErrorKey.
  */
 - (_Nullable T)value;
 

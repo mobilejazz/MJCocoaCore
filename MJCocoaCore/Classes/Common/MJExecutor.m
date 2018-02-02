@@ -39,8 +39,8 @@
 
 - (void)submit:(void (^)(void (^end)(void)))block
 {
-    _executing = YES;
     dispatch_async(_queue, ^{
+        _executing = YES;
         block(^{
             dispatch_semaphore_signal(_semaphore);
         });
@@ -57,7 +57,7 @@
 {
     MJFuture *future = [MJFuture emptyFuture];
     [self submit:^(void (^end)(void)) {
-        [future setOnSetBlock:^(__strong id  _Nullable * _Nonnull value, NSError *__strong  _Nullable * _Nonnull error) {
+        [future onSet:^(__strong id  _Nullable * _Nonnull value, NSError *__strong  _Nullable * _Nonnull error) {
             end();
         }];
         @try

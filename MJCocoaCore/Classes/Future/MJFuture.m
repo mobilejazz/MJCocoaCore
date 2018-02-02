@@ -38,6 +38,8 @@ static dispatch_queue_t _defaultReturnQueue = nil;
     id _error;
     BOOL _isValueNil;
     
+    void (^ _Nullable _onSetBlock)(_Nullable id __strong * _Nonnull, NSError * _Nullable __strong * _Nonnull );
+    
     dispatch_queue_t _queue;
     dispatch_semaphore_t _semaphore;
     
@@ -191,9 +193,9 @@ static dispatch_queue_t _defaultReturnQueue = nil;
     }];
 }
 
-- (void)setOnSetBlock:(void (^)(__strong id  _Nullable * _Nonnull, NSError *__strong  _Nullable * _Nonnull))onSetBlock
+- (void)onSet:(void (^)(id __strong *, NSError * __strong *))block
 {
-    _onSetBlock = onSetBlock;
+    _onSetBlock = block;
 }
 
 - (MJFuture*)inQueue:(dispatch_queue_t)queue
@@ -219,6 +221,22 @@ static dispatch_queue_t _defaultReturnQueue = nil;
         self.thenBlock = block;
         [self mjz_update];
     }
+}
+
+- (void)success:(void (^ _Nullable)(_Nullable id value))success failure:( void (^ _Nullable)(NSError * _Nullable error))failure
+{
+    [self then:^(id  _Nullable value, NSError * _Nullable error) {
+        if (error)
+        {
+            if (failure)
+                failure(error);
+        }
+        else
+        {
+            if (success)
+                success(value);
+        }
+    }];
 }
 
 - (void)complete

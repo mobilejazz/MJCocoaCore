@@ -17,13 +17,11 @@
 #import "MJInteractor.h"
 #import "MJExecutor.h"
 
-static NSMutableDictionary *_interactorDispatchQueues;
+static NSMutableDictionary *_executors;
 
 @interface MJInteractor ()
 
 @property (nonatomic, assign, readwrite) BOOL refresh;
-
-@property (nonatomic, strong, readwrite) MJExecutor *executor;
 
 @end
 
@@ -36,25 +34,24 @@ static NSMutableDictionary *_interactorDispatchQueues;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _interactorDispatchQueues = [[NSMutableDictionary alloc] init];
+        _executors = [[NSMutableDictionary alloc] init];
     });
 }
 
 - (id)init
 {
-    NSString *className = NSStringFromClass(self.class);
-    NSString *queueName = [NSString stringWithFormat:@"com.mobilejazz.core.interactor.%@", className];
-    
-    @synchronized(_interactorDispatchQueues)
+    @synchronized(_executors)
     {
-        dispatch_queue_t queue = _interactorDispatchQueues[queueName];
-        if (!queue)
+        NSString *key = NSStringFromClass(self.class);
+        MJExecutor *executor = _executors[key];
+        if (!executor)
         {
-            queue = dispatch_queue_create([queueName cStringUsingEncoding:NSUTF8StringEncoding], DISPATCH_QUEUE_SERIAL);
-            _interactorDispatchQueues[queueName] = queue;
+            NSString *queueName = [NSString stringWithFormat:@"com.mobilejazz.core.interactor.%@", key];
+            dispatch_queue_t queue = dispatch_queue_create([queueName cStringUsingEncoding:NSUTF8StringEncoding], DISPATCH_QUEUE_SERIAL);
+            executor = [[MJExecutor alloc] initWithQueue:queue];
+            _executors[key] = executor;
         }
-        
-        return [self initWithExecutor:[[MJExecutor alloc] initWithQueue:queue]];
+        return [self initWithExecutor:executor];
     }
 }
 
@@ -114,15 +111,6 @@ static NSMutableDictionary *_interactorDispatchQueues;
 - (BOOL)isExecuting
 {
     return _executor.isExecuting;
-}
-
-- (void)perform:(void (^)(void))block
-{
-    [_executor submit:^(void (^ _Nonnull end)(void)) {
-        block();
-        end();
-        _refresh = NO;
-    }];
 }
 
 - (MJFuture*)performWithFuture:(void (^)(MJFuture *future))block

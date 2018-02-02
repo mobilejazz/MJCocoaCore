@@ -38,6 +38,7 @@
  Submits a new block for execution
  
  @param block The block to be executed. Contains as a parameter another block to be called after the execution ends.
+ @discussion The block end must be called once after the operation ends, otherwise the executor's queue won't be unlocked.
  */
 - (void)submit:(void (^_Nonnull)(void (^_Nonnull end)(void)))block;
 
@@ -57,7 +58,7 @@
  @return A future for the result of the execution.
  @discussion The returned future executes by default on the main thread.
  */
-- (MJFuture * _Nonnull)ft_submit:(void (^_Nonnull)(MJFuture * _Nonnull))block;
+- (MJFuture * _Nonnull)ft_submit:(void (^_Nonnull)(MJFuture * _Nonnull future))block;
 
 @end
 
