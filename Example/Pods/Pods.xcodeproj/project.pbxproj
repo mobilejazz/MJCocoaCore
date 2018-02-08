@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00A6ADA7202C7320008A54C8 /* UIDevice+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A6ADA5202C7320008A54C8 /* UIDevice+Additions.h */; };
-		00A6ADA8202C7320008A54C8 /* UIDevice+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 00A6ADA6202C7320008A54C8 /* UIDevice+Additions.m */; };
 		02C4E2421907D9FF8AB43A9B60C8BC9C /* RLMListBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 66909A14360E431C88F1987F91621D56 /* RLMListBase.h */; };
 		064C8BDF2AC927191FFA06BD2E744563 /* RLMRealmConfiguration+Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 156CC55222E4B2ADFF6F5FBC7536CD4D /* RLMRealmConfiguration+Sync.h */; };
 		08B51A85514AB7F1CBB47839AC9DC2C3 /* RLMProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C785F4A814872D7F7083D17B6B1C97A /* RLMProperty.h */; };
@@ -322,8 +320,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00A6ADA5202C7320008A54C8 /* UIDevice+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+Additions.h"; path = "MJCocoaCore/Classes/Common/UIDevice+Additions.h"; sourceTree = "<group>"; };
-		00A6ADA6202C7320008A54C8 /* UIDevice+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIDevice+Additions.m"; path = "MJCocoaCore/Classes/Common/UIDevice+Additions.m"; sourceTree = "<group>"; };
 		011CF37E5B693E134908800AF085912B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0272D9CA300CF0235B9498F133F25212 /* RLMMigration.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = RLMMigration.mm; path = Realm/RLMMigration.mm; sourceTree = "<group>"; };
 		03BEA4ECDE8BF9342FBDD732E9001389 /* partial_sync.cpp */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = partial_sync.cpp; path = Realm/ObjectStore/src/sync/partial_sync.cpp; sourceTree = "<group>"; };
@@ -881,8 +877,6 @@
 				9547683785E02299B3501BAE045D25E3 /* MJSecureKey.m */,
 				AABD27BBDB0BBAEEC282FE3343952E65 /* NSString+Additions.h */,
 				6BCFFDF267C0491F1890C014A9CCF759 /* NSString+Additions.m */,
-				00A6ADA5202C7320008A54C8 /* UIDevice+Additions.h */,
-				00A6ADA6202C7320008A54C8 /* UIDevice+Additions.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -925,7 +919,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00A6ADA7202C7320008A54C8 /* UIDevice+Additions.h in Headers */,
 				C04E8D3A0173433A3E3EF12556D53753 /* MJAppLinkRecognizer.h in Headers */,
 				19A72AF51E4EAD1AFBCC01B067298280 /* MJCocoaCore-umbrella.h in Headers */,
 				CF9DF3085D99603ED38CE6D19F1CFAB4 /* MJCocoaCore.h in Headers */,
@@ -1239,7 +1232,6 @@
 				D72DB1CD18EB66981D6E5DF4E3F5CF29 /* MJErrorCodes.m in Sources */,
 				13005B874DF3B0DBA73492BE34BA57B4 /* MJExecutor.m in Sources */,
 				0C48CB97E87BBC88A127BE48B82C82B4 /* MJFuture.m in Sources */,
-				00A6ADA8202C7320008A54C8 /* UIDevice+Additions.m in Sources */,
 				399CF66EE52DA184F5578A629AFBBF5D /* MJFutureBatch.m in Sources */,
 				513B7C9B0C44521184991425A7F2987B /* MJFutureHub.m in Sources */,
 				198BD35CBE711347E6FBB86B56ACC6D6 /* MJInteractor.m in Sources */,
