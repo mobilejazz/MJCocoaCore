@@ -81,26 +81,23 @@ static NSMutableDictionary *_executors;
     if ([NSThread isMainThread])
     {
         block();
-        _end();
-        _end = nil;
-        _refresh = NO;
+        [self end];
     }
     else
     {
         dispatch_async(dispatch_get_main_queue(), ^{
             block();
-            _end();
-            _end = nil;
-            _refresh = NO;
+            [self end];
         });
     }
 }
 
 - (void)end
 {
-    _end();
+    void (^end)(void) = _end;
     _end = nil;
     _refresh = NO;
+    end();
 }
 
 - (void)setNeedsRefresh
