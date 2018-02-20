@@ -233,50 +233,36 @@ static dispatch_queue_t _defaultReturnQueue = nil;
 
 - (MJFuture *)success:(void (^)(id value))success
 {
-    if (_success)
-    {
-        void (^oldSuccess)(id) = _success;
-        _success = nil;
-        MJFuture *future = [[MJFuture alloc] initReactive:self.reactive];
-        [future setFuture:self];
-        [future success:^(id value) {
-            oldSuccess(value);
-            success(value);
-        }];
-        return future;
-    }
-    
-    @synchronized (self)
-    {
-        _success = success;
-        [self mjz_update];
-    }
-    
-    return self;
+    MJFuture *future = [[MJFuture alloc] initReactive:self.reactive];
+    [self then:^(id object, NSError * error) {
+        if (error)
+        {
+            [future setError:error];
+        }
+        else
+        {
+            success(object);
+            [future setValue:object];
+        }
+    }];
+    return future;
 }
 
 - (MJFuture *)failure:( void (^)(NSError *error))failure
 {
-    if (_failure)
-    {
-        void (^oldFailure)(id) = _failure;
-        _failure = nil;
-        MJFuture *future = [[MJFuture alloc] initReactive:self.reactive];
-        [future setFuture:self];
-        [future failure:^(NSError *error) {
-            oldFailure(error);
+    MJFuture *future = [[MJFuture alloc] initReactive:self.reactive];
+    [self then:^(id object, NSError * error) {
+        if (error)
+        {
             failure(error);
-        }];
-        return future;
-    }
-    
-    @synchronized (self)
-    {
-        _failure = failure;
-        [self mjz_update];
-    }
-    
-    return self;
+            [future setError:error];
+        }
+        else
+        {
+            [future setValue:object];
+        }
+    }];
+    return future;
 }
 
 - (void)complete

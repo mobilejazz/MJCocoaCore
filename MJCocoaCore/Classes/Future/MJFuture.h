@@ -186,14 +186,14 @@ extern NSString * _Nonnull const MJFutureErrorKey;
 - (void)then:(void (^ _Nonnull)(_Nullable T value, NSError *_Nullable error))block;
 
 /**
- * Success block. Returns the receiver future if success block not yet defined, or a new future chained to the oringial one otherwise.
+ * Success block. Returns a new future instance chained to the original one.
  **/
-- (MJFuture<T>* _Nonnull)success:(void (^ _Nullable)(_Nullable T value))success;
+- (MJFuture<T>* _Nonnull)success:(void (^ _Nonnull)(_Nullable T value))success;
 
 /**
- * Failure block. Returns the receiver future if failure block not yet defined, or a new future chained to the oringial one otherwise.
+ * Failure block. Returns a new future instance chained to the original one.
  **/
-- (MJFuture<T>* _Nonnull)failure:( void (^ _Nullable)(NSError * _Nonnull error))failure;
+- (MJFuture<T>* _Nonnull)failure:( void (^ _Nonnull)(NSError * _Nonnull error))failure;
 
 /**
  Completes the future (if not completed yet). Completed futures cannot be used anymore and no then block will be called afterwards.
