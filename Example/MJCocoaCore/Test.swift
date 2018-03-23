@@ -11,7 +11,7 @@ import MJCocoaCore
 
 func testFuture() {
     
-    let future = Future<NSString>()
+    let future = MJFuture<NSString>()
     
     future.then { value in
         
