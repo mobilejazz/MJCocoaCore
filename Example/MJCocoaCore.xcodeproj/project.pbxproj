@@ -24,6 +24,7 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		C0457C906BD90FD30054F755 /* Pods_MJCocoaCore_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D7A5ECB171EC6FF42F5051 /* Pods_MJCocoaCore_Tests.framework */; };
+		D2B355122064D9960071E900 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B355112064D9960071E900 /* Test.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		850B0D9DCCE55A5AB9C549D5 /* Pods_MJCocoaCore_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MJCocoaCore_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9C6D74AC17DC6375A1A4B65A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D2B355102064D9960071E900 /* MJCocoaCore_Example-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MJCocoaCore_Example-Bridging-Header.h"; sourceTree = "<group>"; };
+		D2B355112064D9960071E900 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		D305DB783EE2F48F18C4275A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F1D7A5ECB171EC6FF42F5051 /* Pods_MJCocoaCore_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MJCocoaCore_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F549F2671E6B78808CEF1788 /* Pods-MJCocoaCore_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MJCocoaCore_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MJCocoaCore_Example/Pods-MJCocoaCore_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -137,9 +140,11 @@
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
 				6003F5A5195388D20070C39A /* MJViewController.h */,
 				6003F5A6195388D20070C39A /* MJViewController.m */,
+				D2B355112064D9960071E900 /* Test.swift */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				D2B355102064D9960071E900 /* MJCocoaCore_Example-Bridging-Header.h */,
 			);
 			name = "Example for MJCocoaCore";
 			path = MJCocoaCore;
@@ -252,6 +257,7 @@
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
 						DevelopmentTeam = 3VP5WS89TZ;
+						LastSwiftMigration = 0920;
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -409,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* MJAppDelegate.m in Sources */,
+				D2B355122064D9960071E900 /* Test.swift in Sources */,
 				6003F5A7195388D20070C39A /* MJViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
@@ -538,13 +545,18 @@
 			baseConfigurationReference = 1447828782190699E0EA6B4D /* Pods-MJCocoaCore_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3VP5WS89TZ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MJCocoaCore/MJCocoaCore-Prefix.pch";
 				INFOPLIST_FILE = "MJCocoaCore/MJCocoaCore-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MJCocoaCore/MJCocoaCore_Example-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -554,13 +566,17 @@
 			baseConfigurationReference = F549F2671E6B78808CEF1788 /* Pods-MJCocoaCore_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = 3VP5WS89TZ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MJCocoaCore/MJCocoaCore-Prefix.pch";
 				INFOPLIST_FILE = "MJCocoaCore/MJCocoaCore-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MJCocoaCore/MJCocoaCore_Example-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -569,6 +585,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 03E0618B460F48C8D6221E7C /* Pods-MJCocoaCore_Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -593,6 +610,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1DD73C6C3B41CA7FBCFA42C8 /* Pods-MJCocoaCore_Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
