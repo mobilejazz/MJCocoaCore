@@ -15,7 +15,7 @@
 //
 
 #import "MJFutureHub.h"
-#import "MJFuture.h"
+#import "MJFuture+Private.h"
 
 @implementation MJFutureHub
 {
@@ -86,6 +86,7 @@
 - (void)plug:(MJFuture *)future as:(MJFutureMemoryReferenceType)type
 {
     [_lock lock];
+    // Store the future
     switch (type)
     {
         case MJFutureMemoryReferenceTypeStrong:
@@ -96,6 +97,21 @@
             break;
     }
     [_lock unlock];
+    
+    // Deliver the current value/error if exists
+    MJFutureResult *result = self.future->_result;
+    if (result)
+    {
+        switch (result.type)
+        {
+            case MJFutureResultTypeValue:
+                [future setValue:result.value];
+                break;
+            case MJFutureResultTypeError:
+                [future setError:result.error];
+                break;
+        }
+    }
 }
 
 - (void)unplug:(MJFuture *)future

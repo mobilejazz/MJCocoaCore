@@ -17,7 +17,7 @@
 #import "MJFutureBatch.h"
 #import "MJFuture.h"
 
-@interface MJFutureResult <T> : NSObject
+@interface MJFutureContextualResult <T> : NSObject
 
 @property (nonatomic, strong) T object;
 @property (nonatomic, strong) NSError *error;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation MJFutureResult
+@implementation MJFutureContextualResult
 
 @end
 
@@ -36,8 +36,8 @@
     void (^_Nullable _completionBlock)(NSError * _Nullable error, id _Nullable context);
 
     NSInteger _counter;
-    NSMutableArray <MJFutureResult*> *_results;
-    MJFutureResult *_errorResult;
+    NSMutableArray <MJFutureContextualResult*> *_results;
+    MJFutureContextualResult *_errorResult;
     
     NSInteger _serialDeliveryIndex;
 }
@@ -86,7 +86,7 @@
     
     if (_serial)
     {
-        MJFutureResult *result = [MJFutureResult new];
+        MJFutureContextualResult *result = [MJFutureContextualResult new];
         [_results addObject:result];
     }
     
@@ -98,7 +98,7 @@
         {
             _counter--;
             
-            MJFutureResult *result = nil;
+            MJFutureContextualResult *result = nil;
             
             if (_serial)
             {
@@ -107,7 +107,7 @@
             }
             else
             {
-                result = [MJFutureResult new];
+                result = [MJFutureContextualResult new];
                 [_results addObject:result];
             }
             
@@ -146,7 +146,7 @@
         {
             for (NSInteger i=_serialDeliveryIndex; i<_results.count; ++i)
             {
-                MJFutureResult *result = _results[i];
+                MJFutureContextualResult *result = _results[i];
                 if (result.completed)
                 {
                     _thenBlock(result.object, result.error, result.context);
@@ -160,10 +160,10 @@
         }
         else
         {
-            NSMutableArray <MJFutureResult*> *results = _results;
+            NSMutableArray <MJFutureContextualResult*> *results = _results;
             _results = [NSMutableArray array];
             
-            [results enumerateObjectsUsingBlock:^(MJFutureResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [results enumerateObjectsUsingBlock:^(MJFutureContextualResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 _thenBlock(obj.object, obj.error, obj.context);
             }];
         }
