@@ -27,7 +27,7 @@
  @param queue The queue to be used
  @return The initialized instance
  */
-- (instancetype _Nonnull)initWithQueue:(dispatch_queue_t _Nonnull)queue;
+- (instancetype _Nonnull)initWithQueue:(dispatch_queue_t _Nullable)queue;
 
 /**
  YES if executing, NO otherwise

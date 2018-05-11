@@ -10,7 +10,6 @@ import Foundation
 import MJCocoaCore
 
 func testFuture() {
-    
     let future = MJFuture<NSString>()
     
     future.then { value in
@@ -18,6 +17,5 @@ func testFuture() {
         }.fail { error in
             
     }
-    
 }
 
