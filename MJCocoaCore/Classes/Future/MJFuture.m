@@ -350,6 +350,9 @@ static dispatch_queue_t _defaultReturnQueue = nil;
         NSAssert(_result != nil, @"MJFutureResult shouldn't be nil if state is waiting for block");
         switch (_result.type) {
             case MJFutureResultTypeValue:
+                if (!_reactive) {
+                    _state = MJFutureStateSent;
+                }
                 _state = MJFutureStateSent;
                 return _result.value;
                 
