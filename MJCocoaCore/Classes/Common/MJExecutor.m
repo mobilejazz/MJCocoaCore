@@ -42,12 +42,12 @@
     if (_queue)
     {
         dispatch_async(_queue, ^{
-            _executing = YES;
+            self->_executing = YES;
             block(^{
-                dispatch_semaphore_signal(_semaphore);
+                dispatch_semaphore_signal(self->_semaphore);
             });
-            dispatch_semaphore_wait(_semaphore, DISPATCH_TIME_FOREVER);
-            _executing = NO;
+            dispatch_semaphore_wait(self->_semaphore, DISPATCH_TIME_FOREVER);
+            self->_executing = NO;
         });
     }
     else

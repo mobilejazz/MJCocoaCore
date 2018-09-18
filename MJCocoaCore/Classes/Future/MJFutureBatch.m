@@ -96,27 +96,27 @@
         
         @synchronized (self)
         {
-            _counter--;
+            self->_counter--;
             
             MJFutureContextualResult *result = nil;
             
-            if (_serial)
+            if (self->_serial)
             {
-                result = _results[serialIndex];
+                result = self->_results[serialIndex];
                 result.completed = YES;
             }
             else
             {
                 result = [MJFutureContextualResult new];
-                [_results addObject:result];
+                [self->_results addObject:result];
             }
             
             result.object = object;
             result.error = error;
             result.context = context;
             
-            if (!_errorResult && error != nil)
-                _errorResult = result;
+            if (!self->_errorResult && error != nil)
+                self->_errorResult = result;
             
             [self mjz_updateStatus];
         }
@@ -164,7 +164,7 @@
             _results = [NSMutableArray array];
             
             [results enumerateObjectsUsingBlock:^(MJFutureContextualResult * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                _thenBlock(obj.object, obj.error, obj.context);
+                self->_thenBlock(obj.object, obj.error, obj.context);
             }];
         }
     }

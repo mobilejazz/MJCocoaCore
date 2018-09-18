@@ -151,16 +151,16 @@
     [_lock unlock];
     
     [_future then:^(id  _Nullable object, NSError * _Nullable error) {
-        [_lock lock];
-        for (MJFuture *future in _weakFutures.allObjects)
+        [self->_lock lock];
+        for (MJFuture *future in self->_weakFutures.allObjects)
         {
             [future setValue:object error:error];
         }
-        for (MJFuture *future in _strongFutures.copy)
+        for (MJFuture *future in self->_strongFutures.copy)
         {
             [future setValue:object error:error];
         }
-        [_lock unlock];
+        [self->_lock unlock];
     }];
 }
 
