@@ -1,6 +1,6 @@
 {
   "name": "MJCocoaCore",
-  "version": "2.3.8",
+  "version": "2.3.10",
   "summary": "Mobile Jazz Cocoa Core",
   "description": "Common set of reusable classes, categories and definitions for Cocoa.",
   "homepage": "https://github.com/mobilejazz/MJCocoaCore",
@@ -13,10 +13,10 @@
   },
   "source": {
     "git": "https://github.com/mobilejazz/MJCocoaCore.git",
-    "tag": "2.3.8"
+    "tag": "2.3.10"
   },
   "platforms": {
-    "ios": "7.0",
+    "ios": "9.0",
     "osx": "10.9",
     "tvos": "9.0"
   },

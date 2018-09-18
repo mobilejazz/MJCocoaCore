@@ -1,10 +1,10 @@
 PODS:
-  - MJCocoaCore (2.3.8):
-    - MJCocoaCore/Common (= 2.3.8)
-  - MJCocoaCore/Common (2.3.8):
+  - MJCocoaCore (2.3.10):
+    - MJCocoaCore/Common (= 2.3.10)
+  - MJCocoaCore/Common (2.3.10):
     - MJCocoaCore/Future
-  - MJCocoaCore/Future (2.3.8)
-  - MJCocoaCore/Realm (2.3.8):
+  - MJCocoaCore/Future (2.3.10)
+  - MJCocoaCore/Realm (2.3.10):
     - MJCocoaCore/Common
     - Realm (~> 3.0)
   - Realm (3.3.2):
@@ -15,14 +15,18 @@ DEPENDENCIES:
   - MJCocoaCore (from `../`)
   - MJCocoaCore/Realm (from `../`)
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Realm
+
 EXTERNAL SOURCES:
   MJCocoaCore:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  MJCocoaCore: a7c052b856fca99b7b6cfcea1168ecde7d4b883e
+  MJCocoaCore: bc01e783118fc93198d9c3f7b751ee346ad7e990
   Realm: d927fbf66df5532cfafc08afb5f7e53ded37b894
 
 PODFILE CHECKSUM: 16c0f8f8040e6123099eba4c95fa4c456510c3eb
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.2

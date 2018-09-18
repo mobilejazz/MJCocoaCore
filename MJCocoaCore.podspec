@@ -28,7 +28,7 @@ Common set of reusable classes, categories and definitions for Cocoa.
   s.source           = { :git => 'https://github.com/mobilejazz/MJCocoaCore.git', :tag => s.version.to_s }
   # s.social_media_url = 'http://twitter.com/mobilejazzcom'
 
-  s.ios.deployment_target = '7.0'
+  s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.9'
   s.tvos.deployment_target = '9.0'
 
